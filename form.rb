@@ -6,9 +6,9 @@ class Form < Formula
   sha1 "527005d082a823e260d77043be3c2539dcc6a72f"
   head do
     url "https://github.com/vermaseren/form.git",
-        :revision => "bd36b3a785d1b8cf489dc8ed8e10c219ef85cdd7"
-    version "4.1-20150401"
-    DATE_VERSION = "Apr  1 2015"
+        :revision => "36ecf57b0192e50296c7149d39a69f59cf64efa1"
+    version "4.1-20150412"
+    DATE_VERSION = "Apr 12 2015"
     depends_on "autoconf" => :build
     depends_on "automake" => :build
   end
