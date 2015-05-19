@@ -6,7 +6,7 @@ class Jaxodraw < Formula
   sha1 "e2eaecf369fd4999b27cc1d3fdc780ad599aab04"
 
   resource "axodraw4j" do
-    url "http://cznic.dl.sourceforge.net/project/jaxodraw/axodraw4j/axodraw4j_2008_11_19/axodraw4j_2008_11_19.tar.gz"
+    url "https://downloads.sourceforge.net/project/jaxodraw/axodraw4j/axodraw4j_2008_11_19/axodraw4j_2008_11_19.tar.gz"
     sha1 "d07b4b51548037ce95ccf17a246afa0a181fa0e5"
   end
 
@@ -24,7 +24,8 @@ class Jaxodraw < Formula
     libexec.install "#{name}-#{version}.jar"
     bin.write_jar_script libexec/"#{name}-#{version}.jar", name
     resource("axodraw4j").stage do
-      (share/name).install "axodraw4j.sty"
+      File.chmod 0644, "axodraw4j.sty"  # 600 -> 644
+      (share/"texmf"/"tex"/"latex"/name).install "axodraw4j.sty"
     end
     cp resource("jax2eps").cached_download, "jax2eps"
     cp resource("jax2tex").cached_download, "jax2tex"
@@ -40,9 +41,19 @@ class Jaxodraw < Formula
     bin.install ["jax2eps", "jax2tex"]
   end
 
-  def caveats; <<-EOS.undent
-    axodraw4j.sty has been copied to:
-      #{HOMEBREW_PREFIX}/share/jaxodraw/axodraw4j.sty
+  def caveats;
+    if OS.mac?
+      default_texmf = "~/Library/texmf"
+    elsif OS.linux?
+      default_texmf = "~/texmf"
+    end
+
+    <<-EOS.undent
+    axodraw4j.sty has been installed to
+      #{HOMEBREW_PREFIX}/share/texmf/tex/latex/#{name}/axodraw4j.sty
+
+    If you are using TeX Live, you can add it to your TEXMFHOME using
+      tlmgr conf texmf TEXMFHOME "#{default_texmf}:#{HOMEBREW_PREFIX}/share/texmf"
     EOS
   end
 end
