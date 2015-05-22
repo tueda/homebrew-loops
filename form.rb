@@ -1,9 +1,10 @@
-require 'formula'
+require "formula"
 
 class Form < Formula
   homepage "http://www.nikhef.nl/~form/"
   url "https://github.com/vermaseren/form/releases/download/v4.1-20131025/form-4.1.tar.gz"
   sha1 "527005d082a823e260d77043be3c2539dcc6a72f"
+
   head do
     url "https://github.com/vermaseren/form.git",
         :revision => "36ecf57b0192e50296c7149d39a69f59cf64efa1"
@@ -21,7 +22,8 @@ class Form < Formula
   def install
     system "autoreconf", "-i" if build.head?
     args = [
-      "--prefix=#{prefix}"
+      "--prefix=#{prefix}",
+      "--disable-dependency-tracking"
     ]
     args << "--enable-debug" if build.with? "debug"
     args << "--enable-parform" if build.with? :mpi
