@@ -7,9 +7,9 @@ class Form < Formula
 
   head do
     url "https://github.com/vermaseren/form.git",
-        :revision => "36ecf57b0192e50296c7149d39a69f59cf64efa1"
-    version "4.1-20150412"
-    DATE_VERSION = "Apr 12 2015"
+        :revision => "f1e220402e8c09ea7a0e2aeffbe638a467fbb10b"
+    version "4.1-20150424"
+    DATE_VERSION = "Apr 24 2015"
     depends_on "autoconf" => :build
     depends_on "automake" => :build
   end
