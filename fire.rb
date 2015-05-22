@@ -69,9 +69,13 @@ class Fire < Formula
     EOS
     system "#{bin}/FIRE5", "-c", "box"
     system "cat", "box.out"
+    system "KLink", "-test" if build.with? "klink"
+    system "FLink", "-test" if build.with? "flink"
   end
 
   def caveats; <<-EOS.undent
+    KLink (--with-klink) conflicts with KLink in tueda/loop/fiesta.
+
     Examples have been copied to
       #{HOMEBREW_PREFIX}/share/FIRE5/examples/
 
