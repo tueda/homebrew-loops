@@ -27,6 +27,9 @@ class Jaxodraw < Formula
       File.chmod 0644, "axodraw4j.sty"  # 600 -> 644
       (share/"texmf"/"tex"/"latex"/name).install "axodraw4j.sty"
     end
+    [resource("jax2eps"), resource("jax2tex")].each do |r|
+      r.verify_download_integrity(r.fetch)
+    end
     cp resource("jax2eps").cached_download, "jax2eps"
     cp resource("jax2tex").cached_download, "jax2tex"
     inreplace ["jax2eps", "jax2tex"] do |s|
