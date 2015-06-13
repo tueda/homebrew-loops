@@ -8,7 +8,7 @@ class Fiesta < Formula
   patch :DATA
 
   depends_on "kyoto-cabinet"
-  depends_on "tueda/loops/cuba3"
+  depends_on "cuba3"
   depends_on "mpfr"
   depends_on "gmp"
   depends_on :mpi => :optional
@@ -46,20 +46,19 @@ class Fiesta < Formula
   end
 
   def caveats; <<-EOS.undent
-    KLink (--with-klink) conflicts with KLink in tueda/loop/fire.
-
-    Examples have been copied to
-      #{HOMEBREW_PREFIX}/share/FIESTA3/examples/
-
-    FIESTA3.m and asy2.1.1.m have been installed to
+    FIESTA3.m and asy2.1.1.m have been copied to
       #{HOMEBREW_PREFIX}/share/Mathematica/Applications/
-
     You can add it to your Mathematica $Path by adding a line
       AppendTo[$Path, "#{HOMEBREW_PREFIX}/share/Mathematica/Applications"]]
     to the file obtained by
       FileNameJoin[{$UserBaseDirectory, "Kernel", "init.m"}]
     Or run the following command in Mathematica:
       (Import["https://git.io/AppendPath.m"];AppendPath["#{HOMEBREW_PREFIX}/share/Mathematica/Applications"])
+
+    Examples have been copied to
+      #{HOMEBREW_PREFIX}/share/FIESTA3/examples/
+
+    KLink (--with-klink) conflicts with KLink in fire.
     EOS
   end
 

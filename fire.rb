@@ -74,20 +74,19 @@ class Fire < Formula
   end
 
   def caveats; <<-EOS.undent
-    KLink (--with-klink) conflicts with KLink in tueda/loop/fiesta.
-
-    Examples have been copied to
-      #{HOMEBREW_PREFIX}/share/FIRE5/examples/
-
-    FIRE5.m has been installed to
+    FIRE5.m has been copied to
       #{HOMEBREW_PREFIX}/share/Mathematica/Applications/FIRE5.m
-
     You can add it to your Mathematica $Path by adding a line
       AppendTo[$Path, "#{HOMEBREW_PREFIX}/share/Mathematica/Applications"]]
     to the file obtained by
       FileNameJoin[{$UserBaseDirectory, "Kernel", "init.m"}]
     Or run the following command in Mathematica:
       (Import["https://git.io/AppendPath.m"];AppendPath["#{HOMEBREW_PREFIX}/share/Mathematica/Applications"])
+
+    Examples have been copied to
+      #{HOMEBREW_PREFIX}/share/FIRE5/examples/
+
+    KLink (--with-klink) conflicts with KLink in fiesta.
     EOS
   end
 end

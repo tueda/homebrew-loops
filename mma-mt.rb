@@ -62,18 +62,17 @@ class MmaMt < Formula
   end
 
   def caveats; <<-EOS.undent
-    Examples have been copied to
-      #{HOMEBREW_PREFIX}/share/mma-mt/examples/
-
-    MT.m has been installed to
+    MT.m has been copied to
       #{HOMEBREW_PREFIX}/share/Mathematica/Applications/MT.m
-
     You can add it to your Mathematica $Path by adding a line
       AppendTo[$Path, "#{HOMEBREW_PREFIX}/share/Mathematica/Applications"]]
     to the file obtained by
       FileNameJoin[{$UserBaseDirectory, "Kernel", "init.m"}]
     Or run the following command in Mathematica:
       (Import["https://git.io/AppendPath.m"];AppendPath["#{HOMEBREW_PREFIX}/share/Mathematica/Applications"])
+
+    Examples have been copied to
+      #{HOMEBREW_PREFIX}/share/mma-mt/examples/
     EOS
   end
 end

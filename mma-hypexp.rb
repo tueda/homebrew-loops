@@ -64,9 +64,8 @@ class MmaHypexp < Formula
   end
 
   def caveats; <<-EOS.undent
-    HypExp.m has been installed to
+    HypExp.m has been copied to
       #{HOMEBREW_PREFIX}/share/Mathematica/Applications/HypExp.m
-
     You can add it to your Mathematica $Path by adding a line
       AppendTo[$Path, "#{HOMEBREW_PREFIX}/share/Mathematica/Applications"]]
     to the file obtained by
