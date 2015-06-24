@@ -1,23 +1,22 @@
-require 'formula'
-
 class Jaxodraw < Formula
+  desc "A Java program for drawing Feynman diagrams"
   homepage "http://jaxodraw.sourceforge.net/"
   url "http://jaxodraw.sourceforge.net/download/pkgs/jaxodraw-2.1-0-bin.tar.gz"
-  sha1 "e2eaecf369fd4999b27cc1d3fdc780ad599aab04"
+  sha256 "ab1b0d2e9c4a886b42b10068eda21e299844b2df9d4c5a6737887a0c98345c42"
 
   resource "axodraw4j" do
     url "https://downloads.sourceforge.net/project/jaxodraw/axodraw4j/axodraw4j_2008_11_19/axodraw4j_2008_11_19.tar.gz"
-    sha1 "d07b4b51548037ce95ccf17a246afa0a181fa0e5"
+    sha256 "60353a25563cb4e987304a7d030bbc7e85c688c881f804cd08e8ba76a370af61"
   end
 
   resource "jax2eps" do
     url "http://users.phys.psu.edu/~collins/software/JD-utils/jax2eps"
-    sha1 "e423fcd39ae56579a2b0053f6dec6e9d4bb69845"
+    sha256 "e8c99a43142bfc44d83943c0ec2f6a19eaa2e423c52df7430b5a76b2f0428c4e"
   end
 
   resource "jax2tex" do
     url "http://users.phys.psu.edu/~collins/software/JD-utils/jax2tex"
-    sha1 "0d23804dec3107aa8a1d198e2cf2c8a46f99af9e"
+    sha256 "af6479d0703492f3e88276ffe7565587e0f7c562c1119e07d3c8a712de108ca6"
   end
 
   def install

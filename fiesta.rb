@@ -1,9 +1,8 @@
-require "formula"
-
 class Fiesta < Formula
+  desc "Feynman Integral Evaluation by a Sector decomposiTion Approach"
   homepage "http://science.sander.su/FIESTA.htm"
   url "https://bitbucket.org/feynmanIntegrals/fiesta/get/3.5.tar.gz"
-  sha1 "571703b9f78324d3327a6638faa5e0606491dcc9"
+  sha256 "57429936d1ebb0765b15e63bc5ace3bab7990830190b70e55dd180e04c3a97c9"
 
   patch :DATA
 

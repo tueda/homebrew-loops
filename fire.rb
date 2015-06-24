@@ -1,18 +1,17 @@
-require 'formula'
-
 class Fire < Formula
+  desc "Feynman Integral REduction"
   homepage "http://science.sander.su/FIRE.htm"
   url "https://bitbucket.org/feynmanIntegrals/fire/get/5.1.tar.gz"
-  sha1 "2f59801b1949e22f209fba433423128da456f210"
+  sha256 "a7bd140a5ee6ec90a2fcb6d399dabce82dbf91959521f2a6e7b2c8d70a9d2da0"
 
   patch do
     url "https://bitbucket.org/feynmanIntegrals/fire/commits/4c259eec4c8564fbb54b1bd6a5936a212ededf73/raw/"
-    sha1 "922420701c67d5fee5b373958a8106916c029745"
+    sha256 "9b090b4f466b3e6331654653c513ec5e17bf1f91404a331e633b557e300d5df1"
   end
 
   patch do
     url "https://bitbucket.org/feynmanIntegrals/fire/commits/dc3a6f8e368fac94c8738abe9bae3be711e7b8b3/raw/"
-    sha1 "30dad38bb95e76f877cd256d73f15c49131d9988"
+    sha256 "6bed14eb635d6766d6687e120faa42da38c30c0d4f52910f1928d24c161cf29c"
   end
 
   patch :DATA

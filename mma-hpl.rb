@@ -1,4 +1,5 @@
 class MmaHpl < Formula
+  desc "An implementation of the harmonic polylogarithms (HPL)"
   homepage "http://krone.physik.unizh.ch/~maitreda/HPL/"
   url "http://krone.physik.unizh.ch/~maitreda/HPL/HPL-2.0.tar.gz"
   sha256 "ca965edb320c735f31433daf11b099ef11d2fbd1a8108b11293d18a6674136ee"

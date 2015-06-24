@@ -1,4 +1,5 @@
 class MmaHypexp < Formula
+  desc "Expand hypergeometric functions JFJ-1 around their parameters"
   homepage "http://krone.physik.unizh.ch/~maitreda/HypExp/"
   url "http://krone.physik.unizh.ch/~maitreda/HypExp/HypExp-2.0.tar.gz"
   sha256 "d6275525a37d393c7706210d875364d06962f84e1715b570f07c56ed3cf9a60f"

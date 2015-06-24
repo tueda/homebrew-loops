@@ -1,9 +1,8 @@
-require "formula"
-
 class Cuba3 < Formula
+  desc "A library for multidimensional numerical integration"
   homepage "http://www.feynarts.de/cuba"
   url "http://www.feynarts.de/cuba/Cuba-3.3.tar.gz"
-  sha1 "7cfab584f2d3617c66b9913b0f0a464e0769d68c"
+  sha256 "967d1c8fb64062ddbe21480075e25ad26e89bfc04dbb5c90b030925be588413f"
 
   patch :DATA
 

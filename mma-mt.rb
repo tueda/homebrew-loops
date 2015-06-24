@@ -1,4 +1,5 @@
 class MmaMt < Formula
+  desc "A Mathematica package to compute convolutions"
   homepage "http://arxiv.org/abs/1307.6925"
   url "http://www.ttp.kit.edu/Progdata/ttp13/ttp13-027/MT-1.0.tar.gz"
   sha256 "002b37a0a6a9a26825ae4450ce60661b19e09e2f1cd4a5cce749a22d5add4fa7"

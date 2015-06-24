@@ -1,9 +1,8 @@
-require 'formula'
-
 class Qgraf < Formula
+  desc "A computer program to generate Feynman diagrams and represent them by symbolic expressions"
   homepage "http://cfif.ist.utl.pt/~paulo/qgraf.html"
   url "http://anonymous:@qgraf.ist.utl.pt/v3.1/qgraf-3.1.4.tgz"
-  sha1 "4bf56402255af7b9a8f26f14f4f1d02aaff34f7f"
+  sha256 "b6f827a654124b368ea17cd391a78a49cda70e192e1c1c22e8e83142b07809dd"
 
   depends_on :fortran
 

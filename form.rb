@@ -1,9 +1,8 @@
-require "formula"
-
 class Form < Formula
+  desc "Symbolic manipulation system for very big expressions"
   homepage "http://www.nikhef.nl/~form/"
   url "https://github.com/vermaseren/form/releases/download/v4.1-20131025/form-4.1.tar.gz"
-  sha1 "527005d082a823e260d77043be3c2539dcc6a72f"
+  sha256 "fb3470937d66ed5cb1af896b15058836d2c805d767adac1b9073ed2df731cbe9"
 
   head do
     url "https://github.com/vermaseren/form.git",
