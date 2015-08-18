@@ -18,6 +18,7 @@ class Form < Formula
     depends_on "automake" => :build
   end
 
+  depends_on "zlib" => :recommended unless OS.mac?
   depends_on "gmp" => :recommended
   option "with-mpi", "Build also the mpi versions"
   depends_on :mpi => [:cc, :cxx, :optional]
