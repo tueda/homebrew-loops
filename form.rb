@@ -6,8 +6,8 @@ class Form < Formula
 
   devel do
     url "https://github.com/vermaseren/form.git",
-        :revision => "a078fe7ce073800b93054ae573fe46b0abe7511b"
-    version "4.1-20150720"
+        :revision => "5fbce8e7e9b71821629095f293094cb67e63dcac"
+    version "4.1-20150901"
     depends_on "autoconf" => :build
     depends_on "automake" => :build
   end
@@ -36,7 +36,7 @@ class Form < Formula
     ENV["CFLAGS"] = normalize_flags(ENV["CFLAGS"])
     ENV["CXXFLAGS"] = normalize_flags(ENV["CXXFLAGS"])
     system "autoreconf", "-i" if build.devel? or build.head?
-    system "sh", "./gendate.sh", "-c", "--", "sources/production-date.h" if build.devel? or build.head?
+    system "sh", "scripts/gendate.sh", "-c", "-o", "sources/production-date.h" if build.devel? or build.head?
     args = [
       "--prefix=#{prefix}",
       "--disable-dependency-tracking"
