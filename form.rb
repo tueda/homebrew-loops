@@ -23,6 +23,7 @@ class Form < Formula
   option "with-mpi", "Build also the mpi versions"
   depends_on :mpi => [:cc, :cxx, :optional]
   option "with-debug", "Build also the debug versions"
+  option "without-check", "Skip build-time tests"
 
   def normalize_flags(flags)
     a = flags.split(" ")
@@ -46,6 +47,8 @@ class Form < Formula
     args << "--without-gmp" if build.without? "gmp"
     system "./configure", *args
     system "make"
+    # NOTE: test suite in the tarball depends on Linux strace.
+    system "make", "check" if build.with?("check") and (build.devel? or build.head? or OS.linux?)
     system "make", "install"
   end
 end
