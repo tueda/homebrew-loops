@@ -6,8 +6,8 @@ class Form < Formula
 
   devel do
     url "https://github.com/vermaseren/form.git",
-        :revision => "5fbce8e7e9b71821629095f293094cb67e63dcac"
-    version "4.1-20150901"
+        :revision => "0beb5ac79b3820a8da3163cbb3f84cb526195011"
+    version "4.1-20150903"
     depends_on "autoconf" => :build
     depends_on "automake" => :build
   end
