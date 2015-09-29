@@ -1,6 +1,6 @@
 class Gosam < Formula
-  desc "The package GoSam allows for the automated calculation of one-loop" \
-       "amplitudes for multi-particle processes in renormalizable quantum" \
+  desc "The package GoSam allows for the automated calculation of one-loop " \
+       "amplitudes for multi-particle processes in renormalizable quantum " \
        "field theories"
   homepage "http://gosam.hepforge.org/"
   url "http://www.hepforge.org/archive/gosam/gosam-2.0.tar.gz"
