@@ -1,18 +1,8 @@
 class Fire < Formula
   desc "Feynman Integral REduction"
   homepage "http://science.sander.su/FIRE.htm"
-  url "https://bitbucket.org/feynmanIntegrals/fire/get/5.1.tar.gz"
-  sha256 "a7bd140a5ee6ec90a2fcb6d399dabce82dbf91959521f2a6e7b2c8d70a9d2da0"
-
-  patch do
-    url "https://bitbucket.org/feynmanIntegrals/fire/commits/4c259eec4c8564fbb54b1bd6a5936a212ededf73/raw/"
-    sha256 "9b090b4f466b3e6331654653c513ec5e17bf1f91404a331e633b557e300d5df1"
-  end
-
-  patch do
-    url "https://bitbucket.org/feynmanIntegrals/fire/commits/dc3a6f8e368fac94c8738abe9bae3be711e7b8b3/raw/"
-    sha256 "6bed14eb635d6766d6687e120faa42da38c30c0d4f52910f1928d24c161cf29c"
-  end
+  url "https://bitbucket.org/feynmanIntegrals/fire/get/5.2.tar.gz"
+  sha256 "95f5e76fe9d5df42f7fc40f885bdcefd0484df9f5ddca0074a1f5d0842e3ee2f"
 
   patch :DATA
 
@@ -91,7 +81,7 @@ class Fire < Formula
 end
 __END__
 diff --git a/FIRE5/FLink/Makefile b/FIRE5/FLink/Makefile
-index aca31b3..edcd26e 100644
+index aca31b3..f489d6b 100644
 --- a/FIRE5/FLink/Makefile
 +++ b/FIRE5/FLink/Makefile
 @@ -19,8 +19,15 @@ INCDIR = ${CADDSDIR}
@@ -111,7 +101,7 @@ index aca31b3..edcd26e 100644
  MLIBVERSION=4
  else
  MLIBVERSION=3
-@@ -36,19 +43,20 @@ endif
+@@ -36,19 +43,21 @@ endif
  MLIB = ${CADDSDIR}/libML${BIT}i${MLIBVERSION}.a
  
  ifeq ($(UNAME_S),Darwin)
@@ -125,26 +115,25 @@ index aca31b3..edcd26e 100644
  endif
  
 -CC=gcc
--
--FLink : FLink.o gateToMath.o  gateToFermat.o
--	${CC} FLink.o gateToMath.o gateToFermat.o ${LIBS} -o $@
 +OBJ = FLink.o gateToMath.o  gateToFermat.o
  
+-FLink : FLink.o gateToMath.o  gateToFermat.o
+-	${CC} FLink.o gateToMath.o gateToFermat.o ${LIBS} -o $@
 +FLink : $(OBJ)
 +	$(CC) $(CFLAGS) $(LDFLAGS) -o FLink $(OBJ) $(LIBS)
  
--.c.o :
+ 
+ .c.o :
 -	${CC} -c ${EXTRA_CFLAGS} -I${INCDIR} $<
-+.c.o:
 +	$(CC) $(CPPFLAGS) $(CFLAGS) -c $<
  
  gateToMath.c : gateToMath.tm
  	${MPREP} $? -o $@
 diff --git a/FIRE5/KLink/Makefile b/FIRE5/KLink/Makefile
-index 31d82f7..548a1a7 100644
+index 31d82f7..913010a 100644
 --- a/FIRE5/KLink/Makefile
 +++ b/FIRE5/KLink/Makefile
-@@ -12,6 +12,10 @@ VERSION := $(shell echo -e $$ VersionNumber | tr -d " " | $(MATHEXE) -noprompt |
+@@ -12,6 +12,15 @@ VERSION := $(shell echo -e $$ VersionNumber | tr -d " " | $(MATHEXE) -noprompt |
  MBASE := $(shell echo -e $$ InstallationDirectory | tr -d " " | $(MATHEXE) -noprompt | tr -d "\"\n")
  SYSID :=  $(shell echo -e $$ SystemID | tr -d " " | $(MATHEXE) -noprompt | tr -d "\"\n" )
  MLINKDIR = ${MBASE}/SystemFiles/Links/MathLink/DeveloperKit
@@ -152,18 +141,17 @@ index 31d82f7..548a1a7 100644
 +MLIB = ${CADDSDIR}/libML${BIT}i${MLIBVERSION}.a
 +MPREP = ${CADDSDIR}/mprep
 +
++CC = gcc
++CPPFLAGS += -I$(CADDSDIR)
++CFLAGS += -O3 -Wno-unused-result
++LIBS =
++
  ifeq ($(SYSID), Linux)
  	BIT := 32
  endif
-@@ -19,34 +23,39 @@ ifeq ($(SYSID), Linux-x86-64)
- 	BIT := 64
+@@ -20,33 +29,32 @@ ifeq ($(SYSID), Linux-x86-64)
  endif
  
-+CC = gcc
-+CPPFLAGS += -I$(CADDSDIR)
-+CFLAGS += -O3
-+LIBS =
-+
  ifeq ($(shell echo "$(VERSION)>=10" | bc), 1)
 +ifneq ($(UNAME_S),Darwin)
 +LIBS += -luuid -ldl
@@ -194,20 +182,18 @@ index 31d82f7..548a1a7 100644
  
 -CC=gcc
 -
--KLink: $(OBJ)
+ KLink: $(OBJ)
 -	$(CC) $(OBJ) -L../usr/lib/ -L../usr/lib64/ ${LIBS} -o $@
-+KLink : $(OBJ)
 +	$(CC) $(CFLAGS) $(LDFLAGS) -o KLink $(OBJ) $(LIBS)
  
  .c.o:
 -	$(CC) -c -I${CADDSDIR} -I../usr/include/ -O2 -c $<
 +	$(CC) $(CPPFLAGS) $(CFLAGS) -c $<
-+
  
  MathSide.c : MathSide.tm
  	${MPREP} -o MathSide.c MathSide.tm
 diff --git a/FIRE5/sources/Makefile b/FIRE5/sources/Makefile
-index e98aa4c..62de1c8 100644
+index 7684bd7..799b53f 100644
 --- a/FIRE5/sources/Makefile
 +++ b/FIRE5/sources/Makefile
 @@ -1,13 +1,13 @@
@@ -215,13 +201,13 @@ index e98aa4c..62de1c8 100644
 -CC= g++
 -cc= gcc
 -CFLAGS = -O3 -I../usr/include
-+CXX = g++
-+CXXFLAGS += -O3
++CXX=g++
++CXXFLAGS = -O3
  
  UNAME_S := $(shell uname -s)
  ifeq ($(UNAME_S),Darwin)
 -LFLAGS = -L../usr/lib/ -L../usr/lib64/ -lkyotocabinet -lsnappy -lstdc++ -lpthread -lm -lc
-+LIBS = -lkyotocabinet -lsnappy -lstdc++ -lpthread -lm -lc
++LIBS = -lkyotocabinet -lsnappy -lpthread -lm
  else
 -LFLAGS = -L../usr/lib/ -L../usr/lib64/ -Wl,-Bstatic  -lkyotocabinet -lsnappy -Wl,-Bdynamic -lstdc++ -lrt -lpthread -lm -lc 
 +CXXFLAGS += -pthread
@@ -229,13 +215,11 @@ index e98aa4c..62de1c8 100644
  endif
  
  
-@@ -17,11 +17,11 @@ endif
- OBJ = main.o point.o equation.o functions.o gateToFermat.o common.o parser.o
+@@ -18,10 +18,10 @@ OBJ = main.o point.o equation.o functions.o gateToFermat.o common.o parser.o
  
  
--default: $(OBJ)
+ FIRE5: $(OBJ)
 -	${CC} $(OBJ)  ${LFLAGS}  -o FIRE5
-+FIRE5: $(OBJ)
 +	$(CXX) $(CXXFLAGS) $(LDFLAGS) -o FIRE5 $(OBJ) $(LIBS)
  
  .cpp.o:
