@@ -57,6 +57,9 @@ class Fiesta < Formula
     Examples have been copied to
       #{HOMEBREW_PREFIX}/share/FIESTA3/examples/
 
+    To build KLink (--with-klink) on Linux with Mathematica 10, you need libuuid:
+      brew install libuuid
+
     KLink (--with-klink) conflicts with KLink in fire.
     EOS
   end

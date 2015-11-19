@@ -75,6 +75,10 @@ class Fire < Formula
     Examples have been copied to
       #{HOMEBREW_PREFIX}/share/FIRE5/examples/
 
+    To build KLink (--with-klink) or FLink (--with-flink) on Linux with
+    Mathematica 10, you need libuuid:
+      brew install libuuid
+
     KLink (--with-klink) conflicts with KLink in fiesta.
     EOS
   end
