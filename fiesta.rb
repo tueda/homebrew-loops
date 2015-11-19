@@ -13,7 +13,27 @@ class Fiesta < Formula
   depends_on :mpi => :optional
   option "without-klink", "Do not build KLink"
 
+  def env_math
+    s = ENV["HOMEBREW_MATH"]
+    if s.nil? or s.empty?
+      if OS.mac?
+        s = "/Applications/Mathematica.app/Contents/MacOS/MathKernel"
+      else
+        s = "math"
+      end
+      ENV["HOMEBREW_MATH"] = s
+    end
+    if which s
+      ohai "Mathematica path: #{s}"
+    else
+      onoe "Mathematica (#{s}) not found."
+    end
+  end
+
   def install
+    if build.with? "klink"
+      env_math
+    end
     system "make", "-C", "FIESTA3/mpfr"
     system "make", "-C", "FIESTA3/complex"
     system "make", "-C", "FIESTA3/threads"
@@ -59,6 +79,8 @@ class Fiesta < Formula
 
     To build KLink (--with-klink) on Linux with Mathematica 10, you need libuuid:
       brew install libuuid
+    Mathematica executable for the build can be specified by the environment
+    variable $HOMEBREW_MATH.
 
     KLink (--with-klink) conflicts with KLink in fire.
     EOS
@@ -79,10 +101,21 @@ class Fiesta < Formula
 end
 __END__
 diff --git a/FIESTA3/KLink/Makefile b/FIESTA3/KLink/Makefile
-index 9cce5b4..548a1a7 100644
+index 9cce5b4..ca63da3 100644
 --- a/FIESTA3/KLink/Makefile
 +++ b/FIESTA3/KLink/Makefile
-@@ -12,6 +12,10 @@ VERSION := $(shell echo -e $$ VersionNumber | tr -d " " | $(MATHEXE) -noprompt |
+@@ -1,9 +1,5 @@
+ UNAME_S := $(shell uname -s)
+-ifeq ($(UNAME_S),Darwin)
+-MATHEXE=/Applications/Mathematica.app/Contents/MacOS/MathKernel
+-else
+-MATHEXE=math
+-endif
++MATHEXE=$(HOMEBREW_MATH)
+ 
+ 
+ 
+@@ -12,6 +8,10 @@ VERSION := $(shell echo -e $$ VersionNumber | tr -d " " | $(MATHEXE) -noprompt |
  MBASE := $(shell echo -e $$ InstallationDirectory | tr -d " " | $(MATHEXE) -noprompt | tr -d "\"\n")
  SYSID :=  $(shell echo -e $$ SystemID | tr -d " " | $(MATHEXE) -noprompt | tr -d "\"\n" )
  MLINKDIR = ${MBASE}/SystemFiles/Links/MathLink/DeveloperKit
@@ -93,7 +126,7 @@ index 9cce5b4..548a1a7 100644
  ifeq ($(SYSID), Linux)
  	BIT := 32
  endif
-@@ -19,34 +23,39 @@ ifeq ($(SYSID), Linux-x86-64)
+@@ -19,34 +19,39 @@ ifeq ($(SYSID), Linux-x86-64)
  	BIT := 64
  endif
  

@@ -20,12 +20,31 @@ class MmaMt < Formula
   option "with-weight8", "Install up tp weight 8 tables"
   option "with-dump",    "Build binary tables"
 
+  def env_math
+    s = ENV["HOMEBREW_MATH"]
+    if s.nil? or s.empty?
+      if OS.mac?
+        s = "/Applications/Mathematica.app/Contents/MacOS/MathKernel"
+      else
+        s = "math"
+      end
+      ENV["HOMEBREW_MATH"] = s
+    end
+    if which s
+      ohai "Mathematica path: #{s}"
+    else
+      onoe "Mathematica (#{s}) not found."
+    end
+  end
+
   def install_tables(installpath, depth)
     if build.with? "dump"
+      env_math
       if buildpath != Pathname.pwd
         cp buildpath/"MakeDump.m", Dir.pwd
       end
-      system "math", "-run", "MaxWeight=#{depth};<<MakeDump`;Quit[]'"
+      system ENV["HOMEBREW_MATH"], "-run", \
+             "MaxWeight=#{depth};<<MakeDump`;Quit[]'"
       File.chmod 0644, "MTtab#{depth}.mx"  # 666 -> 644
       File.chmod 0644, "MTitab#{depth}.mx"
       installpath.install ["MTtab#{depth}.mx",
@@ -74,6 +93,9 @@ class MmaMt < Formula
 
     Examples have been copied to
       #{HOMEBREW_PREFIX}/share/mma-mt/examples/
+
+    Mathematica executable to build binary tables (--with-dump) can be specified
+    by the environment variable $HOMEBREW_MATH.
     EOS
   end
 end

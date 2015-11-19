@@ -11,11 +11,31 @@ class Fire < Formula
   option "with-klink", "Build KLink"
   option "with-flink", "Build FLink"
 
+  def env_math
+    s = ENV["HOMEBREW_MATH"]
+    if s.nil? or s.empty?
+      if OS.mac?
+        s = "/Applications/Mathematica.app/Contents/MacOS/MathKernel"
+      else
+        s = "math"
+      end
+      ENV["HOMEBREW_MATH"] = s
+    end
+    if which s
+      ohai "Mathematica path: #{s}"
+    else
+      onoe "Mathematica (#{s}) not found."
+    end
+  end
+
   def install
+    if build.with? "klink" or build.with? "flink"
+      env_math
+    end
     ferlpath = which "fer64"
     ferlpath = which "ferl" if not ferlpath
     if ferlpath
-      ohai "Default fermat path: #{ferlpath}."
+      ohai "Default fermat path: #{ferlpath}"
       inreplace "FIRE5/sources/parser.cpp" do |s|
         s.gsub! 'common::FIRE_folder+"../extra/ferm64/fer64"', "\"#{ferlpath}\""
         s.gsub! 'common::FIRE_folder+"../extra/ferl64/fer64"', "\"#{ferlpath}\""
@@ -78,6 +98,8 @@ class Fire < Formula
     To build KLink (--with-klink) or FLink (--with-flink) on Linux with
     Mathematica 10, you need libuuid:
       brew install libuuid
+    Mathematica executable for the build can be specified by the environment
+    variable $HOMEBREW_MATH.
 
     KLink (--with-klink) conflicts with KLink in fiesta.
     EOS
@@ -85,10 +107,24 @@ class Fire < Formula
 end
 __END__
 diff --git a/FIRE5/FLink/Makefile b/FIRE5/FLink/Makefile
-index aca31b3..f489d6b 100644
+index aca31b3..96c9a27 100644
 --- a/FIRE5/FLink/Makefile
 +++ b/FIRE5/FLink/Makefile
-@@ -19,8 +19,15 @@ INCDIR = ${CADDSDIR}
+@@ -2,11 +2,8 @@
+ # Name of Mathematica executable
+ 
+ UNAME_S := $(shell uname -s)
+-ifeq ($(UNAME_S),Darwin)
+-MATHEXE=/Applications/Mathematica.app/Contents/MacOS/MathKernel
+-else
+-MATHEXE=math
+-endif
++MATHEXE=$(HOMEBREW_MATH)
++
+ #################
+ SHELL=/bin/bash
+ VERSION := $(shell echo -e $$ VersionNumber | tr -d " " | $(MATHEXE) -noprompt | tr -d ".\"\n" )
+@@ -19,8 +16,15 @@ INCDIR = ${CADDSDIR}
  LIBDIR = ${CADDSDIR}
  MPREP = ${CADDSDIR}/mprep
  
@@ -105,7 +141,7 @@ index aca31b3..f489d6b 100644
  MLIBVERSION=4
  else
  MLIBVERSION=3
-@@ -36,19 +43,21 @@ endif
+@@ -36,19 +40,21 @@ endif
  MLIB = ${CADDSDIR}/libML${BIT}i${MLIBVERSION}.a
  
  ifeq ($(UNAME_S),Darwin)
@@ -134,10 +170,21 @@ index aca31b3..f489d6b 100644
  gateToMath.c : gateToMath.tm
  	${MPREP} $? -o $@
 diff --git a/FIRE5/KLink/Makefile b/FIRE5/KLink/Makefile
-index 31d82f7..913010a 100644
+index 31d82f7..fda9eda 100644
 --- a/FIRE5/KLink/Makefile
 +++ b/FIRE5/KLink/Makefile
-@@ -12,6 +12,15 @@ VERSION := $(shell echo -e $$ VersionNumber | tr -d " " | $(MATHEXE) -noprompt |
+@@ -1,9 +1,5 @@
+ UNAME_S := $(shell uname -s)
+-ifeq ($(UNAME_S),Darwin)
+-MATHEXE=/Applications/Mathematica.app/Contents/MacOS/MathKernel
+-else
+-MATHEXE=math
+-endif
++MATHEXE=$(HOMEBREW_MATH)
+ 
+ 
+ 
+@@ -12,6 +8,15 @@ VERSION := $(shell echo -e $$ VersionNumber | tr -d " " | $(MATHEXE) -noprompt |
  MBASE := $(shell echo -e $$ InstallationDirectory | tr -d " " | $(MATHEXE) -noprompt | tr -d "\"\n")
  SYSID :=  $(shell echo -e $$ SystemID | tr -d " " | $(MATHEXE) -noprompt | tr -d "\"\n" )
  MLINKDIR = ${MBASE}/SystemFiles/Links/MathLink/DeveloperKit
@@ -153,7 +200,7 @@ index 31d82f7..913010a 100644
  ifeq ($(SYSID), Linux)
  	BIT := 32
  endif
-@@ -20,33 +29,32 @@ ifeq ($(SYSID), Linux-x86-64)
+@@ -20,33 +25,32 @@ ifeq ($(SYSID), Linux-x86-64)
  endif
  
  ifeq ($(shell echo "$(VERSION)>=10" | bc), 1)
