@@ -1,13 +1,17 @@
 class Form < Formula
   desc "Symbolic manipulation system for very big expressions"
   homepage "http://www.nikhef.nl/~form/"
-  url "https://github.com/vermaseren/form/releases/download/v4.1-20131025/form-4.1.tar.gz"
-  sha256 "fb3470937d66ed5cb1af896b15058836d2c805d767adac1b9073ed2df731cbe9"
+
+  stable do
+    url "https://github.com/vermaseren/form/releases/download/v4.1-20131025/form-4.1.tar.gz"
+    sha256 "fb3470937d66ed5cb1af896b15058836d2c805d767adac1b9073ed2df731cbe9"
+    patch :DATA
+  end
 
   devel do
     url "https://github.com/vermaseren/form.git",
-        :revision => "0beb5ac79b3820a8da3163cbb3f84cb526195011"
-    version "4.1-20150903"
+        :revision => "a8b0f2d37b24fc528ab87c05ad62713faf0a5cc6"
+    version "4.1-20160218"
     depends_on "autoconf" => :build
     depends_on "automake" => :build
   end
@@ -75,3 +79,17 @@ class Form < Formula
     assert_equal result, pipe_output("#{bin}/form -q test.frm")
   end
 end
+__END__
+diff --git a/check/form.rb b/check/form.rb
+index 2c5d87e..8253a41 100644
+--- a/check/form.rb
++++ b/check/form.rb
+@@ -35,7 +35,7 @@ def cleanup_tempfiles
+ end
+ 
+ # determine OS we are running on
+-osname = Config::CONFIG["target_os"]
++osname = RbConfig::CONFIG["target_os"]
+ if osname =~ /linux/
+ 	LINUX = true
+ elsif osname =~ /mswin32/
