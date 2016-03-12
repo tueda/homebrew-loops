@@ -1,8 +1,14 @@
 class MmaMt < Formula
-  desc "A Mathematica package to compute convolutions"
+  desc "Mathematica package to compute convolutions"
   homepage "http://arxiv.org/abs/1307.6925"
   url "http://www.ttp.kit.edu/Progdata/ttp13/ttp13-027/MT-1.0.tar.gz"
   sha256 "002b37a0a6a9a26825ae4450ce60661b19e09e2f1cd4a5cce749a22d5add4fa7"
+
+  option "with-weight7", "Install up to weight 7 tables"
+  option "with-weight8", "Install up tp weight 8 tables"
+  option "with-dump",    "Build binary tables"
+
+  depends_on "mma-hpl"
 
   resource "MTtable7" do
     url "http://www.ttp.kit.edu/Progdata/ttp13/ttp13-027/MTtable7.tar.gz"
@@ -14,15 +20,9 @@ class MmaMt < Formula
     sha256 "ec0f614775b1fd50cf6c28080da466a48f9b19517056ef8ee90e4317aebe79cc"
   end
 
-  depends_on "mma-hpl"
-
-  option "with-weight7", "Install up to weight 7 tables"
-  option "with-weight8", "Install up tp weight 8 tables"
-  option "with-dump",    "Build binary tables"
-
   def env_math
     s = ENV["HOMEBREW_MATH"]
-    if s.nil? or s.empty?
+    if s.nil? || s.empty?
       if OS.mac?
         s = "/Applications/Mathematica.app/Contents/MacOS/MathKernel"
       else
@@ -45,7 +45,7 @@ class MmaMt < Formula
       end
       system ENV["HOMEBREW_MATH"], "-run", \
              "MaxWeight=#{depth};<<MakeDump`;Quit[]'"
-      File.chmod 0644, "MTtab#{depth}.mx"  # 666 -> 644
+      File.chmod 0644, "MTtab#{depth}.mx" # 666 -> 644
       File.chmod 0644, "MTitab#{depth}.mx"
       installpath.install ["MTtab#{depth}.mx",
                            "MTitab#{depth}.mx"]
@@ -70,7 +70,7 @@ class MmaMt < Formula
       install_tables(installpath, 6)
     end
 
-    (share/"mma-mt"/"examples").install "example.nb"
+    (pkgshare/"examples").install "example.nb"
 
     (buildpath/"MT.m").write <<-EOS.undent
       If[!MemberQ[$Path, "#{installpath}"],
@@ -97,5 +97,8 @@ class MmaMt < Formula
     Mathematica executable to build binary tables (--with-dump) can be specified
     by the environment variable $HOMEBREW_MATH.
     EOS
+  end
+
+  test do
   end
 end

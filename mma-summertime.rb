@@ -1,6 +1,5 @@
 class MmaSummertime < Formula
-  desc "Mathematica package performing the high-precision calculation of the " \
-       "multiple sums with factorized summand"
+  desc "Package for the multiple sums with factorized summand"
   homepage "http://www.inp.nsk.su/~lee/programs/SummerTime/"
   url "http://www.inp.nsk.su/~lee/programs/SummerTime/releases/SummerTime-v1.0.zip"
   sha256 "654dc1f73d3e10529584d074d0738645d8844e3cfc01f1f6c924fae91842afe4"
@@ -27,5 +26,8 @@ class MmaSummertime < Formula
     Or run the following command in Mathematica:
       (Import["https://git.io/AppendPath.m"];AppendPath["#{HOMEBREW_PREFIX}/share/Mathematica/Applications"])
     EOS
+  end
+
+  test do
   end
 end

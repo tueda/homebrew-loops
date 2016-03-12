@@ -6,14 +6,15 @@ class Fire < Formula
 
   patch :DATA
 
-  depends_on "kyoto-cabinet"
-  depends_on "snappy"
   option "with-klink", "Build KLink"
   option "with-flink", "Build FLink"
 
+  depends_on "kyoto-cabinet"
+  depends_on "snappy"
+
   def env_math
     s = ENV["HOMEBREW_MATH"]
-    if s.nil? or s.empty?
+    if s.nil? || s.empty?
       if OS.mac?
         s = "/Applications/Mathematica.app/Contents/MacOS/MathKernel"
       else
@@ -29,11 +30,11 @@ class Fire < Formula
   end
 
   def install
-    if build.with? "klink" or build.with? "flink"
+    if build.with?("klink") || build.with?("flink")
       env_math
     end
     ferlpath = which "fer64"
-    ferlpath = which "ferl" if not ferlpath
+    ferlpath = which "ferl" unless ferlpath
     if ferlpath
       ohai "Default fermat path: #{ferlpath}"
       inreplace "FIRE5/sources/parser.cpp" do |s|
@@ -61,27 +62,6 @@ class Fire < Formula
     (share/"Mathematica"/"Applications").install "FIRE5/FIRE5.m"
   end
 
-  test do
-    cp "#{share}/FIRE5/examples/box.start", testpath
-    (testpath/"box.config").write <<-EOS.undent
-      #threads           4
-      #fthreads          4
-      #variables         d
-      #start
-      #folder
-      #problem           1 box.start
-      #integrals         box.in
-      #output            box.out
-    EOS
-    (testpath/"box.in").write <<-EOS.undent
-      {{1,{2,2,2,2}}}
-    EOS
-    system "#{bin}/FIRE5", "-c", "box"
-    system "cat", "box.out"
-    system "KLink", "-test" if build.with? "klink"
-    system "FLink", "-test" if build.with? "flink"
-  end
-
   def caveats; <<-EOS.undent
     FIRE5.m has been copied to
       #{HOMEBREW_PREFIX}/share/Mathematica/Applications/FIRE5.m
@@ -103,6 +83,27 @@ class Fire < Formula
 
     KLink (--with-klink) conflicts with KLink in fiesta.
     EOS
+  end
+
+  test do
+    cp "#{share}/FIRE5/examples/box.start", testpath
+    (testpath/"box.config").write <<-EOS.undent
+      #threads           4
+      #fthreads          4
+      #variables         d
+      #start
+      #folder
+      #problem           1 box.start
+      #integrals         box.in
+      #output            box.out
+    EOS
+    (testpath/"box.in").write <<-EOS.undent
+      {{1,{2,2,2,2}}}
+    EOS
+    system "#{bin}/FIRE5", "-c", "box"
+    system "cat", "box.out"
+    system "KLink", "-test" if build.with? "klink"
+    system "FLink", "-test" if build.with? "flink"
   end
 end
 __END__

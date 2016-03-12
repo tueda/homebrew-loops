@@ -2,8 +2,8 @@ class Minos < Formula
   desc "The Minos database facility "
   homepage "http://www.nikhef.nl/~form/maindir/others/minos/minos.html"
   url "http://www.nikhef.nl/~form/maindir/others/minos/minosdir.tar.gz"
-  sha256 "06e1a3d08f640aae5aec9e9196b57eea6a5e84ea1f386e3e8cfb528fb294dd90"
   version "20070207"
+  sha256 "06e1a3d08f640aae5aec9e9196b57eea6a5e84ea1f386e3e8cfb528fb294dd90"
 
   patch :DATA
 
@@ -18,6 +18,10 @@ class Minos < Formula
     Documents have been copied to:
       #{doc}
     EOS
+  end
+
+  test do
+    system "minos"
   end
 end
 __END__

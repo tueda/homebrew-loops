@@ -6,16 +6,17 @@ class Fiesta < Formula
 
   patch :DATA
 
+  option "without-klink", "Do not build KLink"
+
   depends_on "kyoto-cabinet"
   depends_on "cuba3"
   depends_on "mpfr"
   depends_on "gmp"
   depends_on :mpi => :optional
-  option "without-klink", "Do not build KLink"
 
   def env_math
     s = ENV["HOMEBREW_MATH"]
-    if s.nil? or s.empty?
+    if s.nil? || s.empty?
       if OS.mac?
         s = "/Applications/Mathematica.app/Contents/MacOS/MathKernel"
       else
@@ -88,10 +89,10 @@ class Fiesta < Formula
 
   test do
     require "open3"
-    Open3.popen3("CIntegrateMP") do |stdin, stdout, _|
+    Open3.popen3("CIntegrateMP") do |stdin, _, _|
       stdin.write "Exit"
     end
-    Open3.popen3("CIntegrateMPC") do |stdin, stdout, _|
+    Open3.popen3("CIntegrateMPC") do |stdin, _, _|
       stdin.write "Exit"
     end
     system "CIntegratePool", "-test"

@@ -1,5 +1,5 @@
 class Jaxodraw < Formula
-  desc "A Java program for drawing Feynman diagrams"
+  desc "Java program for drawing Feynman diagrams"
   homepage "http://jaxodraw.sourceforge.net/"
   url "http://jaxodraw.sourceforge.net/download/pkgs/jaxodraw-2.1-0-bin.tar.gz"
   sha256 "ab1b0d2e9c4a886b42b10068eda21e299844b2df9d4c5a6737887a0c98345c42"
@@ -23,7 +23,7 @@ class Jaxodraw < Formula
     libexec.install "#{name}-#{version}.jar"
     bin.write_jar_script libexec/"#{name}-#{version}.jar", name
     resource("axodraw4j").stage do
-      File.chmod 0644, "axodraw4j.sty"  # 600 -> 644
+      File.chmod 0644, "axodraw4j.sty" # 600 -> 644
       (share/"texmf"/"tex"/"latex"/name).install "axodraw4j.sty"
     end
     [resource("jax2eps"), resource("jax2tex")].each do |r|
@@ -43,7 +43,7 @@ class Jaxodraw < Formula
     bin.install ["jax2eps", "jax2tex"]
   end
 
-  def caveats;
+  def caveats
     if OS.mac?
       default_texmf = "~/Library/texmf"
     elsif OS.linux?
@@ -57,5 +57,9 @@ class Jaxodraw < Formula
     If you are using TeX Live, you can add it to your TEXMFHOME using
       tlmgr conf texmf TEXMFHOME "#{default_texmf}:#{HOMEBREW_PREFIX}/share/texmf"
     EOS
+  end
+
+  test do
+    # system "jaxodraw", "--version"
   end
 end

@@ -1,8 +1,11 @@
 class MmaHpl < Formula
-  desc "An implementation of the harmonic polylogarithms (HPL)"
+  desc "Implementation of the harmonic polylogarithms (HPL)"
   homepage "http://krone.physik.unizh.ch/~maitreda/HPL/"
   url "http://krone.physik.unizh.ch/~maitreda/HPL/HPL-2.0.tar.gz"
   sha256 "ca965edb320c735f31433daf11b099ef11d2fbd1a8108b11293d18a6674136ee"
+
+  option "with-weight7", "Install up to weight 7 tables"
+  option "with-weight8", "Install up tp weight 8 tables"
 
   resource "MinimalSet7" do
     url "http://krone.physik.unizh.ch/~maitreda/HPL/MinimalSet7.m.gz"
@@ -44,9 +47,6 @@ class MmaHpl < Formula
     sha256 "5841dc85299424ab1b77ea408587c4a72f4494179cc680d6756ecbec0c5a9d50"
   end
 
-  option "with-weight7", "Install up to weight 7 tables"
-  option "with-weight8", "Install up tp weight 8 tables"
-
   def install
     hplpath = share/"Mathematica"/"Applications"/"HPL-#{version}"
 
@@ -64,9 +64,9 @@ class MmaHpl < Formula
     EOS
     (share/"Mathematica"/"Applications").install "HPL.m"
 
-    (share/"mma-hpl"/"examples").install "HPL-2Examples.nb"
+    (pkgshare/"examples").install "HPL-2Examples.nb"
 
-    if build.with? "weight7" or build.with? "weight8"
+    if build.with?("weight7") || build.with?("weight8")
       resource("MinimalSet7").stage { hplpath.install "MinimalSet7.m" }
       resource("MinimalSetpm7").stage { hplpath.install "MinimalSetpm7.m" }
       resource("h7table").stage { hplpath.install "h7table.mat" }
@@ -94,5 +94,8 @@ class MmaHpl < Formula
     Examples have been copied to
       #{HOMEBREW_PREFIX}/share/mma-hpl/examples/
     EOS
+  end
+
+  test do
   end
 end

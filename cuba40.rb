@@ -1,5 +1,5 @@
 class Cuba40 < Formula
-  desc "A library for multidimensional numerical integration"
+  desc "Library for multidimensional numerical integration"
   homepage "http://www.feynarts.de/cuba"
   url "http://www.feynarts.de/cuba/Cuba-4.0.tar.gz"
   sha256 "f2576448ddc296e3ff841a085e737c2451512482f561ae9e2e9616903b685c75"

@@ -30,4 +30,7 @@ class GosamContrib < Formula
     system "make"
     system "make", "install"
   end
+
+  test do
+  end
 end

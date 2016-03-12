@@ -1,5 +1,5 @@
 class MmaLitered < Formula
-  desc "A Mathematica package performing the IBP reduction of the multiloop integrals"
+  desc "Package performing the IBP reduction of the multiloop integrals"
   homepage "http://www.inp.nsk.su/~lee/programs/LiteRed/"
   url "http://www.inp.nsk.su/~lee/programs/LiteRed/LiteRedV1/LiteRedV1.82.zip"
   sha256 "8acce970305ad52487c13c3643b1725df81248986bd39ef11d96f172fc8dd826"
@@ -8,7 +8,7 @@ class MmaLitered < Formula
     installpath = share/"Mathematica"/"Applications"/"LiteRed-#{version}"
     installpath.install ["Setup/RNL", "Setup/LiteRed.m"]
 
-    (share/"mma-litered"/"examples").install Dir.glob(["Examples/*.nb"])
+    (pkgshare/"examples").install Dir.glob(["Examples/*.nb"])
 
     (buildpath/"LiteRed.m").write <<-EOS.undent
       If[!MemberQ[$Path, "#{installpath}"],
@@ -32,5 +32,8 @@ class MmaLitered < Formula
     Examples have been copied to
       #{HOMEBREW_PREFIX}/share/mma-litered/examples/
     EOS
+  end
+
+  test do
   end
 end

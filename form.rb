@@ -18,29 +18,32 @@ class Form < Formula
     depends_on "automake" => :build
   end
 
+  option "with-mpi", "Build also the mpi versions"
+  option "with-debug", "Build also the debug versions"
+  option "without-test", "Skip build-time tests"
+
   depends_on "zlib" => :recommended unless OS.mac?
   depends_on "gmp" => :recommended
-  option "with-mpi", "Build also the mpi versions"
   depends_on :mpi => [:cc, :cxx, :optional]
-  option "with-debug", "Build also the debug versions"
-  option "without-check", "Skip build-time tests"
 
   def normalize_flags(flags)
+    # Don't use optimization flags given by Homebrew.
     a = flags.split(" ")
     a.delete_if do |item|
-      item == '-Os' or item == '-w'
+      item == "-Os" || item == "-w"
     end
-    return a.join(" ")
+    a.join(" ")
   end
 
   def install
     ENV["CFLAGS"] = normalize_flags(ENV["CFLAGS"])
     ENV["CXXFLAGS"] = normalize_flags(ENV["CXXFLAGS"])
-    system "autoreconf", "-i" if build.devel? or build.head?
-    system "sh", "scripts/gendate.sh", "-c", "-o", "sources/production-date.h" if build.devel? or build.head?
+    system "autoreconf", "-i" if build.devel? || build.head?
+    system "sh", "scripts/gendate.sh", "-c", "-o", "sources/production-date.h" if build.devel? || build.head?
     args = [
       "--prefix=#{prefix}",
-      "--disable-dependency-tracking"
+      "--disable-dependency-tracking",
+      "--disable-silent-rules",
     ]
     args << "--enable-debug" if build.with? "debug"
     args << "--enable-parform" if build.with? :mpi
@@ -48,7 +51,27 @@ class Form < Formula
     system "./configure", *args
     system "make"
     # NOTE: test suite in the tarball depends on Linux strace.
-    system "make", "check" if build.with?("check") and (build.devel? or build.head? or OS.linux?)
+    system "make", "check" if build.with?("test") && (build.devel? || build.head? || OS.linux?)
     system "make", "install"
+  end
+
+  test do
+    (testpath/"test.frm").write <<-EOS.undent
+      Off stats;
+      Off finalstats;
+      Off totalsize;
+      On highfirst;
+      Symbols a, b;
+      Local F = (a + b)^2;
+      Print;
+      .end
+    EOS
+    result = <<-EOS
+
+   F =
+      a^2 + 2*a*b + b^2;
+
+    EOS
+    assert_equal result, pipe_output("#{bin}/form -q test.frm")
   end
 end

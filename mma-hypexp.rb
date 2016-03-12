@@ -4,6 +4,11 @@ class MmaHypexp < Formula
   url "http://krone.physik.unizh.ch/~maitreda/HypExp/HypExp-2.0.tar.gz"
   sha256 "d6275525a37d393c7706210d875364d06962f84e1715b570f07c56ed3cf9a60f"
 
+  option "with-lib2", "Install 2F1 library"
+  option "with-lib3", "Install 3F2 library"
+
+  depends_on "mma-hpl"
+
   resource "lib2new" do
     url "http://krone.physik.unizh.ch/~maitreda/HypExp/lib2new.tar.gz"
     sha256 "a0d2ebbafa9710a46cb5f0d50d0b57c6c488d562b8707a1416abe2977b3ead97"
@@ -13,11 +18,6 @@ class MmaHypexp < Formula
     url "http://krone.physik.unizh.ch/~maitreda/HypExp/lib3new.tar.gz"
     sha256 "a0cd561c149fcbecca53c24d3fc725c785dc6ef557a17f0693dd4339ce782428"
   end
-
-  depends_on "mma-hpl"
-
-  option "with-lib2", "Install 2F1 library"
-  option "with-lib3", "Install 3F2 library"
 
   def install
     hypexppath = share/"Mathematica"/"Applications"/"HypExp-#{version}"
@@ -51,7 +51,7 @@ class MmaHypexp < Formula
               'echo "Get[\"$installdir/HypExp.m\"]"'
     end
 
-    if build.with? "lib2" or build.with? "lib3"
+    if build.with?("lib2") || build.with?("lib3")
       libs = []
       libs << resource("lib2new") if build.with? "lib2"
       libs << resource("lib3new") if build.with? "lib3"
@@ -74,5 +74,8 @@ class MmaHypexp < Formula
     Or run the following command in Mathematica:
       (Import["https://git.io/AppendPath.m"];AppendPath["#{HOMEBREW_PREFIX}/share/Mathematica/Applications"])
     EOS
+  end
+
+  test do
   end
 end
