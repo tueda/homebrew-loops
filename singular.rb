@@ -2,11 +2,9 @@ class Singular < Formula
   desc "Computer algebra system for polynomial computations"
   homepage "https://www.singular.uni-kl.de/"
   url "http://www.mathematik.uni-kl.de/ftp/pub/Math/Singular/SOURCES/4-0-3/singular-4.0.3.tar.gz"
-  sha256 "e2bd893150b40485acdf139a7beed6eeb137ace232d7d57ef45e1c7046308751"
+  sha256 "4ccf70a9efcf087f436bfea9c09d61a554eb8e7638697093a55998ef846f316e"
 
-  head do
-    url "https://github.com/Singular/Sources.git"
-  end
+  head "https://github.com/Singular/Sources.git"
 
   option "without-gfanlib", "Build without gfanlib extension for convex polyhedral computations"
 
