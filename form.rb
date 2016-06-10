@@ -43,7 +43,7 @@ class Form < Formula
     ENV["CFLAGS"] = normalize_flags(ENV["CFLAGS"])
     ENV["CXXFLAGS"] = normalize_flags(ENV["CXXFLAGS"])
     system "autoreconf", "-i" if build.devel? || build.head?
-    system "sh", "scripts/gendate.sh", "-c", "-o", "sources/production-date.h" if build.devel? || build.head?
+    system "sh", "scripts/gendate.sh", "-c", "-o", "sources/production-date.h" if (build.devel? || build.head?) && File.exist?("scripts/gendate.sh")
     args = [
       "--prefix=#{prefix}",
       "--disable-dependency-tracking",
