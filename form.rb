@@ -17,7 +17,7 @@ class Form < Formula
   end
 
   head do
-    url "https://github.com/vermaseren/form.git"
+    url "https://github.com/vermaseren/form.git", :shallow => false
     depends_on "autoconf" => :build
     depends_on "automake" => :build
   end
