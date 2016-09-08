@@ -2,11 +2,11 @@ class Axodraw2 < Formula
   desc "LaTeX graphical style file"
   homepage "http://www.nikhef.nl/~form/maindir/others/axodraw2/axodraw2.html"
   url "http://www.nikhef.nl/~form/maindir/others/axodraw2/axodraw2.sty"
-  sha256 "b2947e7c7dd341673157a657ca5e6ae5827c0fe663be518f8564aab94dd1323a"
+  sha256 "f71dc57d3a5c0c3c7f8e4412c7fb7bb499a48fda643d44d6793178cb3eaa7b4b"
 
   resource "axohelp" do
     url "http://www.nikhef.nl/~form/maindir/others/axodraw2/axohelp.c"
-    sha256 "60ff628991b38b0d761201a84a1cb51a9543b2920d3d8f32d9b8404982d7c3ef"
+    sha256 "a46a733b3fa1ada6bc58bcdbce3348d0cb12ff4664f09ade042d98fc01189f0b"
   end
 
   resource "axoman" do
