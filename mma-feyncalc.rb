@@ -1,8 +1,8 @@
 class MmaFeyncalc < Formula
   desc "Tools and tables for quantum field theory calculations"
   homepage "http://www.feyncalc.org/"
-  url "https://github.com/FeynCalc/feyncalc/archive/Release-9_0_1.tar.gz"
-  sha256 "c0432a6901e342356da1a648e9a0105973ac6120c1041272d5f84f896ec30e16"
+  url "https://github.com/FeynCalc/feyncalc/archive/Release-9_1_0.tar.gz"
+  sha256 "c97ee49118cb96406c61507a4442b8dbabf1a8e123e72801fbcfefeb1d63bfad"
 
   head "https://github.com/FeynCalc/feyncalc.git", :branch => "hotfix-stable"
 
@@ -15,6 +15,7 @@ class MmaFeyncalc < Formula
     (buildpath/"FeynCalc.m").write <<-EOS.undent
       If[!MemberQ[$Path, "#{installpath}"],
         AppendTo[$Path, "#{installpath}"];
+        PacletDirectoryAdd["#{installpath}"];
       ];
       Get["#{installpath/"FeynCalc.m"}"]
     EOS
