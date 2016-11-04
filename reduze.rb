@@ -1,9 +1,8 @@
 class Reduze < Formula
   desc "Distributed Feynman Integral Reduction"
   homepage "https://reduze.hepforge.org/"
-  url "https://reduze.hepforge.org/download/reduze-2.0.9.tar.gz"
-  sha256 "e56494519faffa381f16c8c9b439e9c17485392d47b836ef372d3c4ff451e67a"
-  patch :DATA
+  url "https://reduze.hepforge.org/download/reduze-2.1.tar.gz"
+  sha256 "757556ba0b05b7b4c14091ce4a54f79259b530ed22180417b41f9ae443378ea7"
 
   option "with-yaml-cpp", "Build with brewed yaml-cpp"
   option "without-test", "Skip build-time tests"
@@ -31,28 +30,3 @@ class Reduze < Formula
     system "reduze"
   end
 end
-__END__
-diff --git a/reduze/jobcenter.cpp b/reduze/jobcenter.cpp
-index 6927285..e63a5fd 100644
---- a/reduze/jobcenter.cpp
-+++ b/reduze/jobcenter.cpp
-@@ -14,6 +14,7 @@
- #include "functions.h"
- #include <cmath>
- #include <iomanip>
-+#include <unistd.h>  // usleep
- 
- #include "job_setupsectormappings.h"
- #include "job_setupsectormappingsalt.h"
-diff --git a/reduze/reduzermpi.cpp b/reduze/reduzermpi.cpp
-index ddfa04b..6463390 100644
---- a/reduze/reduzermpi.cpp
-+++ b/reduze/reduzermpi.cpp
-@@ -13,6 +13,7 @@
- #include <mpi.h>
- #include <queue>
- #include <climits>
-+#include <unistd.h>  // usleep
- 
- //#include "communicator.h"
- #include "jobcenter.h"
