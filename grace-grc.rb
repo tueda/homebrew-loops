@@ -1,4 +1,4 @@
-class Grc < Formula
+class GraceGrc < Formula
   desc "Feynman graph generator"
   homepage "http://minami-home.kek.jp/"
   url "http://minami-home.kek.jp/ftp/grc/grc.v2.1.tar.Z"
