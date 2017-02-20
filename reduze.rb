@@ -27,6 +27,6 @@ class Reduze < Formula
   end
 
   test do
-    system "reduze"
+    system "#{bin}/reduze"
   end
 end

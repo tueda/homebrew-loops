@@ -48,6 +48,6 @@ class Axodraw2 < Formula
 
   test do
     touch testpath/"test.ax1"
-    system "axohelp", "test"
+    system "#{bin}/axohelp", "test"
   end
 end

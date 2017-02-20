@@ -25,6 +25,6 @@ class Qgraf < Formula
   end
 
   test do
-    system "qgraf"
+    system "#{bin}/qgraf"
   end
 end

@@ -1,6 +1,6 @@
 class Jaxodraw < Formula
   desc "Java program for drawing Feynman diagrams"
-  homepage "http://jaxodraw.sourceforge.net/"
+  homepage "https://jaxodraw.sourceforge.io/"
   url "http://jaxodraw.sourceforge.net/download/pkgs/jaxodraw-2.1-0-bin.tar.gz"
   sha256 "ab1b0d2e9c4a886b42b10068eda21e299844b2df9d4c5a6737887a0c98345c42"
 
@@ -31,15 +31,12 @@ class Jaxodraw < Formula
     end
     cp resource("jax2eps").cached_download, "jax2eps"
     cp resource("jax2tex").cached_download, "jax2tex"
-    inreplace ["jax2eps", "jax2tex"] do |s|
-      s.gsub! "jaxodraw2", "jaxodraw"
-    end
-    inreplace "jax2eps" do |s|
-      # Evince (GNOME Document Viewer 2.28.2) displays nothing for EPS generated
-      # by ps2eps with -C option.
-      s.gsub! 'system "ps2eps -q -C -c -l -B < $base.ps > $base.eps";',
+    inreplace ["jax2eps", "jax2tex"], "jaxodraw2", "jaxodraw"
+    # Evince (GNOME Document Viewer 2.28.2) displays nothing for EPS generated
+    # by ps2eps with -C option.
+    inreplace "jax2eps",
+              'system "ps2eps -q -C -c -l -B < $base.ps > $base.eps";',
               'system "ps2eps -q -c -l -B < $base.ps > $base.eps";'
-    end
     bin.install ["jax2eps", "jax2tex"]
   end
 
@@ -60,6 +57,6 @@ class Jaxodraw < Formula
   end
 
   test do
-    # system "jaxodraw", "--version"
+    # system "#{bin}/jaxodraw", "--version"
   end
 end

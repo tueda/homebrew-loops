@@ -21,7 +21,7 @@ class Minos < Formula
   end
 
   test do
-    system "minos"
+    system "#{bin}/minos"
   end
 end
 __END__
