@@ -1,4 +1,4 @@
-class Cuba40 < Formula
+class CubaAT40 < Formula
   desc "Library for multidimensional numerical integration"
   homepage "http://www.feynarts.de/cuba"
   url "http://www.feynarts.de/cuba/Cuba-4.0.tar.gz"
@@ -6,7 +6,7 @@ class Cuba40 < Formula
 
   patch :DATA
 
-  keg_only "Cuba 4.0 is provided for software that doesn't compile against newer versions."
+  keg_only :versioned_formula
 
   def install
     ENV.deparallelize

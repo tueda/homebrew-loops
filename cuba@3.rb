@@ -1,4 +1,4 @@
-class Cuba3 < Formula
+class CubaAT3 < Formula
   desc "Library for multidimensional numerical integration"
   homepage "http://www.feynarts.de/cuba"
   url "http://www.feynarts.de/cuba/Cuba-3.3.tar.gz"
@@ -6,7 +6,7 @@ class Cuba3 < Formula
 
   patch :DATA
 
-  keg_only "Cuba 3.3 is provided for software that doesn't compile against newer versions."
+  keg_only :versioned_formula
 
   def install
     ENV.deparallelize
@@ -63,3 +63,42 @@ index 54f66a5..58174a7 100755
  
  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for an ANSI C-conforming const" >&5
  $as_echo_n "checking for an ANSI C-conforming const... " >&6; }
+diff --git a/src/common/MSample.c b/src/common/MSample.c
+index 4c14634..fb4c179 100644
+--- a/src/common/MSample.c
++++ b/src/common/MSample.c
+@@ -7,6 +7,10 @@
+ */
+ 
+ 
++#if MLINTERFACE < 4
++#define MLReleaseRealList MLDisownRealList
++#endif
++
+ static void DoSample(This *t, cnumber n, real *x, real *f
+   VES_ONLY(, real *w, ccount iter))
+ {
+@@ -33,12 +37,12 @@ static void DoSample(This *t, cnumber n, real *x, real *f
+   t->neval += mma_n;
+ 
+   if( mma_n != n*t->ncomp ) {
+-    MLDisownRealList(stdlink, mma_f, mma_n);
++    MLReleaseRealList(stdlink, mma_f, mma_n);
+     longjmp(t->abort, -3);
+   }
+  
+   Copy(f, mma_f, n*t->ncomp);
+-  MLDisownRealList(stdlink, mma_f, mma_n);
++  MLReleaseRealList(stdlink, mma_f, mma_n);
+ }
+ 
+ /*********************************************************************/
+@@ -73,7 +77,7 @@ static count SampleExtra(This *t, cBounds *b)
+     Copy(t->fextra, mma_f + nget*t->ndim, n*t->ncomp);
+   }
+ 
+-  MLDisownRealList(stdlink, mma_f, mma_n);
++  MLReleaseRealList(stdlink, mma_f, mma_n);
+ 
+   return n;
+ }

@@ -1,10 +1,10 @@
-class BerkeleyDb5 < Formula
+class BerkeleyDbAT5 < Formula
   desc "High performance key/value database"
   homepage "https://www.oracle.com/technology/products/berkeley-db/index.html"
   url "http://download.oracle.com/berkeley-db/db-5.3.28.tar.gz"
   sha256 "e0a992d740709892e81f9d93f06daf305cf73fb81b545afe72478043172c3628"
 
-  keg_only "BDB 5.3.28 is provided for software that doesn't compile against newer versions."
+  keg_only :versioned_formula
 
   def install
     # BerkeleyDB dislikes parallel builds

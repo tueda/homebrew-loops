@@ -9,7 +9,7 @@ class Fiesta < Formula
   option "without-klink", "Do not build KLink"
 
   depends_on "kyoto-cabinet"
-  depends_on "cuba3"
+  depends_on "cuba@3"
   depends_on "mpfr"
   depends_on "gmp"
   depends_on :mpi => :optional

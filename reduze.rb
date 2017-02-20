@@ -9,15 +9,15 @@ class Reduze < Formula
 
   depends_on "cmake" => :build
   depends_on "ginac"
-  depends_on "berkeley-db5" => :optional
+  depends_on "berkeley-db@5" => :optional
   depends_on "yaml-cpp" => :optional
   depends_on :mpi => [:cxx, :optional]
 
   def install
-    ENV.append "LDFLAGS", "-Wl,-rpath,#{Formula["berkeley-db5"].opt_lib}" if build.with? "berkeley-db5"
+    ENV.append "LDFLAGS", "-Wl,-rpath,#{Formula["berkeley-db@5"].opt_lib}" if build.with? "berkeley-db@5"
 
     args = std_cmake_args
-    args << "-DUSE_DATABASE=ON" if build.with? "berkeley-db5"
+    args << "-DUSE_DATABASE=ON" if build.with? "berkeley-db@5"
     args << "-DUSE_MPI=ON" if build.with? :mpi
     system "cmake", *args
     system "make"
