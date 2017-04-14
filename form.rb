@@ -32,6 +32,7 @@ class Form < Formula
 
   def normalize_flags(flags)
     # Don't use optimization flags given by Homebrew.
+    return flags if flags.nil?
     a = flags.split(" ")
     a.delete_if do |item|
       item == "-Os" || item == "-w"
