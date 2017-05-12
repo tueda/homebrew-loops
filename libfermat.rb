@@ -5,7 +5,6 @@ class Libfermat < Formula
 
   depends_on "boost"
   depends_on "cmake" => :build
-  depends_on "pstreams" => :build
 
   def install
     args = std_cmake_args
