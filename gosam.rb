@@ -9,7 +9,7 @@ class Gosam < Formula
     url "http://gosam.hepforge.org/svn/branches/gosam-2.0", :using => :svn
   end
 
-  depends_on "form"
+  depends_on "tueda/form/form"
   depends_on "qgraf"
   depends_on "gosam-contrib"
   depends_on :python

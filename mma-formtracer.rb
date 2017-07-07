@@ -7,7 +7,7 @@ class MmaFormtracer < Formula
 
   patch :DATA
 
-  depends_on "form"
+  depends_on "tueda/form/form"
 
   def install
     installpath = share/"Mathematica"/"Applications"/"FormTracer-#{version}"
