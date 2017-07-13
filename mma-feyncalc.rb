@@ -1,8 +1,8 @@
 class MmaFeyncalc < Formula
   desc "Tools and tables for quantum field theory calculations"
   homepage "http://www.feyncalc.org/"
-  url "https://github.com/FeynCalc/feyncalc/archive/Release-9_1_0.tar.gz"
-  sha256 "c97ee49118cb96406c61507a4442b8dbabf1a8e123e72801fbcfefeb1d63bfad"
+  url "https://github.com/FeynCalc/feyncalc/archive/Release-9_2_0.tar.gz"
+  sha256 "8ae3b607207cfd675e5221ff3e724aff7e019ea030597249b500a0e4702d7115"
 
   head "https://github.com/FeynCalc/feyncalc.git", :branch => "hotfix-stable"
 
