@@ -8,7 +8,7 @@ class Reduze < Formula
   option "without-test", "Skip build-time tests"
 
   depends_on "cmake" => :build
-  depends_on "ginac"
+  depends_on "ginac@1.6.7"
   depends_on "berkeley-db@5" => :optional
   depends_on "yaml-cpp" => :optional
   depends_on :mpi => [:cxx, :optional]
