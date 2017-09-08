@@ -1,13 +1,12 @@
 class MmaPackageX < Formula
   desc "Package to get compact analytic expressions for loop integrals"
   homepage "https://packagex.hepforge.org/"
-  url "http://www.hepforge.org/archive/packagex/X-2.0.1.zip"
-  sha256 "bf6bb5797f0c80434b1109b955bd1f3bbd2e71bbb51f954f34be60aee502ecd1"
+  url "http://www.hepforge.org/archive/packagex/X-2.1.0.zip"
+  sha256 "fc8c071f871575c01dbbe472b192e2fc1387ae8e196c347d3b7b88d978396715"
 
   def install
     installpath = share/"Mathematica"/"Applications"/"X-#{version}"
-    (installpath/"X").install ["Documentation", "Kernel", "Dirac.m",
-                               "Lorentz.m", "OneLoop.m", "PacletInfo.m"]
+    installpath.install "X"
 
     (buildpath/"X.m").write <<-EOS.undent
       If[!MemberQ[$Path, "#{installpath}"],
