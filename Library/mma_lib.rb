@@ -16,14 +16,20 @@ class Formula
   # Create a wrapper package file and install the library.
   def mma_pkg_wrapper(main_file, other_files=[])
     install_path = mma_pkg_app_path/"#{name}-#{version}"
-    other_files = [*other_files]
-    install_path.install [main_file] + [*other_files]
+    files_to_be_installed = [*other_files]
+    if File.exist?(main_file)
+      files_to_be_installed += [main_file]
+      entry_point = main_file
+    else
+      entry_point = File.basename(main_file, ".*") + "`"
+    end
+    install_path.install files_to_be_installed
     (buildpath/main_file).write <<-EOS.undent
       If[!MemberQ[$Path, "#{install_path}"],
         AppendTo[$Path, "#{install_path}"];
         PacletDirectoryAdd["#{install_path}"];
       ];
-      Get["#{main_file}", Path -> "#{install_path}"]
+      Get["#{entry_point}", Path -> "#{install_path}"]
     EOS
     mma_pkg_app_path.install main_file
   end
