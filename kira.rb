@@ -4,6 +4,7 @@ class Kira < Formula
   url "https://www.physik.hu-berlin.de/de/pep/tools/kira-1.0.tar.gz"
   sha256 "5176724197c5946b94b40bc20cfa3118cc8e056ad40f8dfe10d69a476e7b24fd"
 
+  depends_on "pkg-config" => :build
   depends_on "ginac"
   depends_on "yaml-cpp"
   depends_on "sqlite"
