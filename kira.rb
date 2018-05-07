@@ -1,8 +1,8 @@
 class Kira < Formula
   desc "Feynman Integral Reduction Program"
   homepage "https://www.physik.hu-berlin.de/de/pep/tools"
-  url "https://www.physik.hu-berlin.de/de/pep/tools/kira-1.0.tar.gz"
-  sha256 "5176724197c5946b94b40bc20cfa3118cc8e056ad40f8dfe10d69a476e7b24fd"
+  url "https://www.physik.hu-berlin.de/de/pep/tools/kira/kira-1.1.tar.gz"
+  sha256 "467bed896478a2145c848a58442dac117a3912924e7bb79f3e021a05b2a9691d"
 
   depends_on "pkg-config" => :build
   depends_on "ginac"
