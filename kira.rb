@@ -24,7 +24,7 @@ class Kira < Formula
     pkgshare.install "examples"
   end
 
-  def caveats; <<-EOS.undent
+  def caveats; <<~EOS
     Documentation is installed to:
       #{HOMEBREW_PREFIX}/share/doc/#{name}
 
