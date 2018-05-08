@@ -12,7 +12,7 @@ class MmaFeyncalc < Formula
     mv "FeynCalc/DocOutput", "FeynCalc/Documentation"
     installpath.install Dir["FeynCalc/*"]
 
-    (buildpath/"FeynCalc.m").write <<-EOS.undent
+    (buildpath/"FeynCalc.m").write <<~EOS
       If[!MemberQ[$Path, "#{installpath}"],
         AppendTo[$Path, "#{installpath}"];
         PacletDirectoryAdd["#{installpath}"];
@@ -22,7 +22,7 @@ class MmaFeyncalc < Formula
     (share/"Mathematica"/"Applications").install "FeynCalc.m"
   end
 
-  def caveats; <<-EOS.undent
+  def caveats; <<~EOS
     FeynCalc.m has been installed to
       #{HOMEBREW_PREFIX}/share/Mathematica/Applications/FeynCalc.m
     You can add it to your Mathematica $Path by adding a line

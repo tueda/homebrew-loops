@@ -14,7 +14,7 @@ class Minos < Formula
     doc.install "minos.ps"
   end
 
-  def caveats; <<-EOS.undent
+  def caveats; <<~EOS
     Documents have been copied to:
       #{doc}
     EOS

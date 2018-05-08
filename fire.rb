@@ -34,7 +34,7 @@ class Fire < Formula
       env_math
     end
     ferlpath = which "fer64"
-    ferlpath = which "ferl" unless ferlpath
+    ferlpath ||= which "ferl"
     if ferlpath
       ohai "Default fermat path: #{ferlpath}"
       inreplace "FIRE5/sources/parser.cpp" do |s|
@@ -62,7 +62,7 @@ class Fire < Formula
     (share/"Mathematica"/"Applications").install "FIRE5/FIRE5.m"
   end
 
-  def caveats; <<-EOS.undent
+  def caveats; <<~EOS
     FIRE5.m has been copied to
       #{HOMEBREW_PREFIX}/share/Mathematica/Applications/FIRE5.m
     You can add it to your Mathematica $Path by adding a line
@@ -87,7 +87,7 @@ class Fire < Formula
 
   test do
     cp "#{share}/FIRE5/examples/box.start", testpath
-    (testpath/"box.config").write <<-EOS.undent
+    (testpath/"box.config").write <<~EOS
       #threads           4
       #fthreads          4
       #variables         d
@@ -97,7 +97,7 @@ class Fire < Formula
       #integrals         box.in
       #output            box.out
     EOS
-    (testpath/"box.in").write <<-EOS.undent
+    (testpath/"box.in").write <<~EOS
       {{1,{2,2,2,2}}}
     EOS
     system "#{bin}/FIRE5", "-c", "box"

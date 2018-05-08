@@ -30,7 +30,7 @@ class MmaHypexp < Formula
                                  "rrarg.m",
                                  "PZRule*.m"])
 
-    (buildpath/"HypExp.m").write <<-EOS.undent
+    (buildpath/"HypExp.m").write <<~EOS
       $HypExpPath = "#{hypexppath}";
       If[!MemberQ[$Path, $HypExpPath],
         AppendTo[$Path, $HypExpPath];
@@ -39,7 +39,7 @@ class MmaHypexp < Formula
     EOS
     (share/"Mathematica"/"Applications").install "HypExp.m"
 
-    (buildpath/".known.m").write <<-EOS.undent
+    (buildpath/".known.m").write <<~EOS
       {KnownToOrder1}
     EOS
     hypexppath.install ".known.m"
@@ -64,7 +64,7 @@ class MmaHypexp < Formula
     end
   end
 
-  def caveats; <<-EOS.undent
+  def caveats; <<~EOS
     HypExp.m has been copied to
       #{HOMEBREW_PREFIX}/share/Mathematica/Applications/HypExp.m
     You can add it to your Mathematica $Path by adding a line

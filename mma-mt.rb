@@ -72,7 +72,7 @@ class MmaMt < Formula
 
     (pkgshare/"examples").install "example.nb"
 
-    (buildpath/"MT.m").write <<-EOS.undent
+    (buildpath/"MT.m").write <<~EOS
       If[!MemberQ[$Path, "#{installpath}"],
         AppendTo[$Path, "#{installpath}"];
       ];
@@ -81,7 +81,7 @@ class MmaMt < Formula
     (share/"Mathematica"/"Applications").install "MT.m"
   end
 
-  def caveats; <<-EOS.undent
+  def caveats; <<~EOS
     MT.m has been copied to
       #{HOMEBREW_PREFIX}/share/Mathematica/Applications/MT.m
     You can add it to your Mathematica $Path by adding a line

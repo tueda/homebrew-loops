@@ -34,7 +34,7 @@ class Axodraw2 < Formula
       default_texmf = "~/texmf"
     end
 
-    <<-EOS.undent
+    <<~EOS
     axodraw2.sty has been installed to
       #{HOMEBREW_PREFIX}/share/texmf/tex/latex/#{name}/axodraw2.sty
 

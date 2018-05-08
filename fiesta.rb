@@ -12,7 +12,7 @@ class Fiesta < Formula
   depends_on "cuba@3"
   depends_on "mpfr"
   depends_on "gmp"
-  depends_on :mpi => :optional
+  depends_on "open-mpi" => :optional
 
   def env_math
     s = ENV["HOMEBREW_MATH"]
@@ -38,14 +38,14 @@ class Fiesta < Formula
     system "make", "-C", "FIESTA3/mpfr"
     system "make", "-C", "FIESTA3/complex"
     system "make", "-C", "FIESTA3/threads"
-    system "make", "-C", "FIESTA3/mpi" if build.with? :mpi
+    system "make", "-C", "FIESTA3/mpi" if build.with? "open-mpi"
     system "make", "-C", "FIESTA3/sourcesTools"
     system "make", "-C", "FIESTA3/KLink" if build.with? "klink"
 
     bin.install "FIESTA3/mpfr/CIntegrateMP"
     bin.install "FIESTA3/complex/CIntegrateMPC"
     bin.install "FIESTA3/threads/CIntegratePool"
-    bin.install "FIESTA3/mpi/CIntegratePoolMPI" if build.with? :mpi
+    bin.install "FIESTA3/mpi/CIntegratePoolMPI" if build.with? "open-mpi"
     bin.install "FIESTA3/sourcesTools/OutputIntegrand"
     bin.install "FIESTA3/KLink/KLink" if build.with? "klink"
 
@@ -65,7 +65,7 @@ class Fiesta < Formula
     (share/"Mathematica"/"Applications").install "FIESTA3/extra/asy2.1.1.m"
   end
 
-  def caveats; <<-EOS.undent
+  def caveats; <<~EOS
     FIESTA3.m and asy2.1.1.m have been copied to
       #{HOMEBREW_PREFIX}/share/Mathematica/Applications/
     You can add it to your Mathematica $Path by adding a line
@@ -96,7 +96,7 @@ class Fiesta < Formula
       stdin.write "Exit"
     end
     system "CIntegratePool", "-test"
-    system "mpirun", "-np", "2", "CIntegratePoolMPI", "-test" if build.with? :mpi
+    system "mpirun", "-np", "2", "CIntegratePoolMPI", "-test" if build.with? "open-mpi"
     system "KLink", "-test" if build.with? "klink"
   end
 end

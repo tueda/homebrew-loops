@@ -15,7 +15,7 @@ class Singular < Formula
   depends_on "ntl" => :recommended
   depends_on "flint" => :recommended
   depends_on "graphviz" => :recommended
-  depends_on :python => :recommended
+  depends_on "python@2" => :recommended
 
   def install
     args = [
@@ -23,7 +23,7 @@ class Singular < Formula
       "--disable-dependency-tracking",
       "--disable-silent-rules",
     ]
-    if build.with? :python
+    if build.with? "python@2"
       args << "--with-python"
     else
       args << "--without-python"

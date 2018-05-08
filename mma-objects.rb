@@ -12,7 +12,7 @@ class MmaObjects < Formula
     mma_pkg_wrapper("Objects.m", ["Documentation", "PacletInfo.m"])
   end
 
-  def caveats; <<-EOS.undent
+  def caveats; <<~EOS
     #{mmapath_message}
     EOS
   end

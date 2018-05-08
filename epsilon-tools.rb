@@ -17,7 +17,7 @@ class EpsilonTools < Formula
     mmapath = share/"Mathematica"/"Applications"/"EpsilonTools-#{version}"
     mmapath.install "mma/EpsilonTools.m"
 
-    (buildpath/"EpsilonTools.m").write <<-EOS.undent
+    (buildpath/"EpsilonTools.m").write <<~EOS
       If[!MemberQ[$Path, "#{mmapath}"],
         AppendTo[$Path, "#{mmapath}"];
       ];
@@ -28,7 +28,7 @@ class EpsilonTools < Formula
     (share/"epsilon").install "example"
   end
 
-  def caveats; <<-EOS.undent
+  def caveats; <<~EOS
     EpsilonTools.m has been installed as
       #{HOMEBREW_PREFIX}/share/Mathematica/Applications/EpsilonTools.m
     #{mma_common_caveats}
@@ -38,7 +38,7 @@ class EpsilonTools < Formula
     EOS
   end
 
-  def mma_common_caveats; <<-EOS.undent.chomp
+  def mma_common_caveats; <<~EOS.chomp
     You can add it to your Mathematica $Path by adding a line
       AppendTo[$Path, "#{HOMEBREW_PREFIX}/share/Mathematica/Applications"]]
     to the file obtained by

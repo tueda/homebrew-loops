@@ -24,7 +24,7 @@ class Formula
       entry_point = File.basename(main_file, ".*") + "`"
     end
     install_path.install files_to_be_installed
-    (buildpath/main_file).write <<-EOS.undent
+    (buildpath/main_file).write <<~EOS
       If[!MemberQ[$Path, "#{install_path}"],
         AppendTo[$Path, "#{install_path}"];
         PacletDirectoryAdd["#{install_path}"];
@@ -36,7 +36,7 @@ class Formula
 
   # $Path message for "caveats".
   def mmapath_message
-    s = <<-EOS.undent
+    s = <<~EOS
       Add the following line
         AppendTo[$Path, "#{mma_app_path}"]
       to the file printed by

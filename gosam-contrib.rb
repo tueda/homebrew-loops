@@ -9,7 +9,7 @@ class GosamContrib < Formula
     url "http://gosam.hepforge.org/svn/gosam-contrib-2.0", :using => :svn
   end
 
-  depends_on :fortran
+  depends_on "gcc"  # for gfortran
 
   def install
     args = [

@@ -10,7 +10,7 @@ class MmaFeynarts < Formula
                          "Setup.m"]
     doc.install "manual/FA3Guide.pdf"
 
-    (buildpath/"FeynArts.m").write <<-EOS.undent
+    (buildpath/"FeynArts.m").write <<~EOS
       If[!MemberQ[$Path, "#{installpath}"],
         AppendTo[$Path, "#{installpath}"];
       ];
@@ -19,7 +19,7 @@ class MmaFeynarts < Formula
     (share/"Mathematica"/"Applications").install "FeynArts.m"
   end
 
-  def caveats; <<-EOS.undent
+  def caveats; <<~EOS
     FeynArts.m has been installed to
       #{HOMEBREW_PREFIX}/share/Mathematica/Applications/FeynArts.m
     You can add it to your Mathematica $Path by adding a line

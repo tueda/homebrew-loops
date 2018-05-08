@@ -10,7 +10,7 @@ class MmaLitered < Formula
 
     (pkgshare/"examples").install Dir.glob(["Examples/*.nb"])
 
-    (buildpath/"LiteRed.m").write <<-EOS.undent
+    (buildpath/"LiteRed.m").write <<~EOS
       If[!MemberQ[$Path, "#{installpath}"],
         AppendTo[$Path, "#{installpath}"];
       ];
@@ -19,7 +19,7 @@ class MmaLitered < Formula
     (share/"Mathematica"/"Applications").install "LiteRed.m"
   end
 
-  def caveats; <<-EOS.undent
+  def caveats; <<~EOS
     LiteRed.m has been copied to
       #{HOMEBREW_PREFIX}/share/Mathematica/Applications/LiteRed.m
     You can add it to your Mathematica $Path by adding a line

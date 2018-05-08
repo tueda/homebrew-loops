@@ -47,7 +47,7 @@ class Jaxodraw < Formula
       default_texmf = "~/texmf"
     end
 
-    <<-EOS.undent
+    <<~EOS
     axodraw4j.sty has been installed to
       #{HOMEBREW_PREFIX}/share/texmf/tex/latex/#{name}/axodraw4j.sty
 

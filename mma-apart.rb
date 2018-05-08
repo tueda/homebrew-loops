@@ -11,7 +11,7 @@ class MmaApart < Formula
 
     installpath.install "Apart.m"
 
-    (buildpath/"Apart.m").write <<-EOS.undent
+    (buildpath/"Apart.m").write <<~EOS
       If[!MemberQ[$Path, "#{installpath}"],
         AppendTo[$Path, "#{installpath}"];
       ];
@@ -20,7 +20,7 @@ class MmaApart < Formula
     (share/"Mathematica"/"Applications").install "Apart.m"
   end
 
-  def caveats; <<-EOS.undent
+  def caveats; <<~EOS
     Apart.m has been installed as
       #{HOMEBREW_PREFIX}/share/Mathematica/Applications/Apart.m
     You can add it to your Mathematica $Path by adding a line

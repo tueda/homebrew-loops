@@ -14,7 +14,7 @@ class GinacAT167 < Formula
   depends_on "texinfo" => :build unless OS.mac?
   depends_on "cln"
   depends_on "readline"
-  depends_on :python unless OS.mac?
+  depends_on "python@2" unless OS.mac?
 
   def install
     system "autoreconf", "-i"
@@ -24,7 +24,7 @@ class GinacAT167 < Formula
   end
 
   test do
-    (testpath/"test.cpp").write <<-EOS.undent
+    (testpath/"test.cpp").write <<~EOS
     #include <iostream>
     #include <ginac/ginac.h>
     using namespace std;

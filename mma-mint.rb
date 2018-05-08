@@ -10,7 +10,7 @@ class MmaMint < Formula
 
     (pkgshare/"examples").install Dir.glob(["Examples/*.nb"])
 
-    (buildpath/"Mint.m").write <<-EOS.undent
+    (buildpath/"Mint.m").write <<~EOS
       If[!MemberQ[$Path, "#{installpath}"],
         AppendTo[$Path, "#{installpath}"];
       ];
@@ -19,7 +19,7 @@ class MmaMint < Formula
     (share/"Mathematica"/"Applications").install "Mint.m"
   end
 
-  def caveats; <<-EOS.undent
+  def caveats; <<~EOS
     Mint.m has been copied to
       #{HOMEBREW_PREFIX}/share/Mathematica/Applications/Mint.m
     You can add it to your Mathematica $Path by adding a line

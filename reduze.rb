@@ -11,18 +11,18 @@ class Reduze < Formula
   depends_on "ginac@1.6.7"
   depends_on "berkeley-db@5" => :optional
   depends_on "yaml-cpp" => :optional
-  depends_on :mpi => [:cxx, :optional]
+  depends_on "open-mpi" => :optional
 
   def install
     ENV.append "LDFLAGS", "-Wl,-rpath,#{Formula["berkeley-db@5"].opt_lib}" if build.with? "berkeley-db@5"
 
     args = std_cmake_args
     args << "-DUSE_DATABASE=ON" if build.with? "berkeley-db@5"
-    args << "-DUSE_MPI=ON" if build.with? :mpi
+    args << "-DUSE_MPI=ON" if build.with? "open-mpi"
     system "cmake", *args
     system "make"
     system "make", "check" if build.with? "test"
-    system "make", "check_mpi" if build.with?("test") && build.with?(:mpi)
+    system "make", "check_mpi" if build.with?("test") && build.with?("open-mpi")
     system "make", "install"
   end
 

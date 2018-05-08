@@ -14,7 +14,7 @@ class MmaDream < Formula
     mma_pkg_wrapper("DREAM.m", ["DREAM-v2.0p", "Documentation", "PacletInfo.m"])
   end
 
-  def caveats; <<-EOS.undent
+  def caveats; <<~EOS
     #{mmapath_message}
     EOS
   end

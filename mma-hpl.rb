@@ -55,7 +55,7 @@ class MmaHpl < Formula
                               "*HPLatI*.m",
                               "HPL.m", "nmzv.m"])
 
-    (buildpath/"HPL.m").write <<-EOS.undent
+    (buildpath/"HPL.m").write <<~EOS
       $HPLPath = "#{hplpath}";
       If[!MemberQ[$Path, $HPLPath],
         AppendTo[$Path, $HPLPath];
@@ -81,7 +81,7 @@ class MmaHpl < Formula
     end
   end
 
-  def caveats; <<-EOS.undent
+  def caveats; <<~EOS
     HPL.m has been copied to
       #{HOMEBREW_PREFIX}/share/Mathematica/Applications/HPL.m
     You can add it to your Mathematica $Path by adding a line

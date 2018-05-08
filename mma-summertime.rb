@@ -10,13 +10,13 @@ class MmaSummertime < Formula
     installpath.install Dir.glob(["SummerTime-v#{version}/*"])
 
     (buildpath/"SummerTime.m").delete
-    (buildpath/"SummerTime.m").write <<-EOS.undent
+    (buildpath/"SummerTime.m").write <<~EOS
       Get["#{installpath/"SummerTime.m"}"]
     EOS
     (share/"Mathematica"/"Applications").install "SummerTime.m"
   end
 
-  def caveats; <<-EOS.undent
+  def caveats; <<~EOS
     SummerTime.m has been copied to
       #{HOMEBREW_PREFIX}/share/Mathematica/Applications/SummerTimed.m
     You can add it to your Mathematica $Path by adding a line

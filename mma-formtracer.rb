@@ -17,7 +17,7 @@ class MmaFormtracer < Formula
 
     installpath.install ["Documentation", "Examples", "Header", "FormTracer.m", "CHANGELOG", "PacletInfo.m"]
 
-    (buildpath/"FormTracer.m").write <<-EOS.undent
+    (buildpath/"FormTracer.m").write <<~EOS
       If[!MemberQ[$Path, "#{installpath}"],
         AppendTo[$Path, "#{installpath}"];
         PacletDirectoryAdd["#{installpath}"];
@@ -27,7 +27,7 @@ class MmaFormtracer < Formula
     (share/"Mathematica"/"Applications").install "FormTracer.m"
   end
 
-  def caveats; <<-EOS.undent
+  def caveats; <<~EOS
     FormTracer.m has been installed to
       #{HOMEBREW_PREFIX}/share/Mathematica/Applications/FormTracer.m
     You can add it to your Mathematica $Path by adding a line

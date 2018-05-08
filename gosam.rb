@@ -12,7 +12,7 @@ class Gosam < Formula
   depends_on "tueda/form/form"
   depends_on "qgraf"
   depends_on "gosam-contrib"
-  depends_on :python
+  depends_on "python@2"
 
   def install
     system "./setup.py", "install", "--prefix=#{prefix}", "-f"
