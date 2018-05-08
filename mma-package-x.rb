@@ -1,4 +1,4 @@
-require File.expand_path("../Library/mma_lib", __FILE__)
+require File.expand_path("Library/mma_lib", __dir__)
 
 class MmaPackageX < Formula
   desc "Package to get compact analytic expressions for loop integrals"

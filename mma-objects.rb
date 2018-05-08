@@ -1,4 +1,4 @@
-require File.expand_path("../Library/mma_lib", __FILE__)
+require File.expand_path("Library/mma_lib", __dir__)
 
 class MmaObjects < Formula
   desc "Simple classes and objects, allowing to write object-oriented code"

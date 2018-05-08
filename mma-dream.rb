@@ -1,4 +1,4 @@
-require File.expand_path("../Library/mma_lib", __FILE__)
+require File.expand_path("Library/mma_lib", __dir__)
 
 class MmaDream < Formula
   desc "Performing the high-precision calculation of the multiple sums"

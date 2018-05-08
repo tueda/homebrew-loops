@@ -6,7 +6,7 @@ class Qgraf < Formula
 
   option "with-maxdeg10", "Extend the maximum vertex degree to 10"
 
-  depends_on "gcc"  # for gfortran
+  depends_on "gcc" # for gfortran
 
   def install
     inreplace "qgraf-3.1.4.f", "maxdeg=6", "maxdeg=10" if build.with? "maxdeg10"

@@ -48,11 +48,11 @@ class Jaxodraw < Formula
     end
 
     <<~EOS
-    axodraw4j.sty has been installed to
-      #{HOMEBREW_PREFIX}/share/texmf/tex/latex/#{name}/axodraw4j.sty
+      axodraw4j.sty has been installed to
+        #{HOMEBREW_PREFIX}/share/texmf/tex/latex/#{name}/axodraw4j.sty
 
-    If you are using TeX Live, you can add it to your TEXMFHOME using
-      tlmgr conf texmf TEXMFHOME "#{default_texmf}:#{HOMEBREW_PREFIX}/share/texmf"
+      If you are using TeX Live, you can add it to your TEXMFHOME using
+        tlmgr conf texmf TEXMFHOME "#{default_texmf}:#{HOMEBREW_PREFIX}/share/texmf"
     EOS
   end
 

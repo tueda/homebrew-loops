@@ -35,14 +35,14 @@ class Axodraw2 < Formula
     end
 
     <<~EOS
-    axodraw2.sty has been installed to
-      #{HOMEBREW_PREFIX}/share/texmf/tex/latex/#{name}/axodraw2.sty
+      axodraw2.sty has been installed to
+        #{HOMEBREW_PREFIX}/share/texmf/tex/latex/#{name}/axodraw2.sty
 
-    If you are using TeX Live, you can add it to your TEXMFHOME using
-      tlmgr conf texmf TEXMFHOME "#{default_texmf}:#{HOMEBREW_PREFIX}/share/texmf"
+      If you are using TeX Live, you can add it to your TEXMFHOME using
+        tlmgr conf texmf TEXMFHOME "#{default_texmf}:#{HOMEBREW_PREFIX}/share/texmf"
 
-    The manual has been copied to:
-      #{doc}/axoman2.pdf
+      The manual has been copied to:
+        #{doc}/axoman2.pdf
     EOS
   end
 
