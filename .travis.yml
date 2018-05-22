@@ -1,0 +1,42 @@
+os: linux
+dist: trusty
+sudo: required
+language: ruby
+rvm: system
+
+cache:
+  directories:
+    - /home/linuxbrew/.linuxbrew
+
+install:
+  - export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
+  - export HOMEBREW_NO_AUTO_UPDATE=1
+  - |
+    if [ ! -e /home/linuxbrew/.linuxbrew/bin/brew ]; then
+      yes | sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+      mkdir -p $(brew --repo)/Library/Taps/travis
+      ln -s $TRAVIS_BUILD_DIR $(brew --repo)/Library/Taps/travis/homebrew-loops
+    fi
+  - chmod 644 $PACKAGE.rb  # brew audit doesn't like 664
+  - brew uninstall -f $PACKAGE
+  - brew update
+
+before_script:
+  - brew --env
+  - brew config
+
+script:
+  - brew info $PACKAGE
+  - brew audit --strict $PACKAGE
+  - travis_wait 60 brew install --only-dependencies $PACKAGE $OPTIONS
+  - brew install -v $PACKAGE $OPTIONS
+  - brew test -v $PACKAGE
+
+env:
+  - PACKAGE=chaplin
+  - PACKAGE=grace-grc
+  - PACKAGE=grace-tree
+  - PACKAGE=gosam
+  - PACKAGE=kira
+  - PACKAGE=qgraf OPTIONS=--with-maxdeg10
+# - PACKAGE=reduze OPTIONS="--berkeley-db --with-open-mpi"  # too long compiler warnings
