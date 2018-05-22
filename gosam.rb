@@ -1,9 +1,8 @@
 class Gosam < Formula
   desc "Automated calculation of one-loop amplitudes"
   homepage "http://gosam.hepforge.org/"
-  url "http://www.hepforge.org/archive/gosam/gosam-2.0.tar.gz"
-  version "2.0.2.2"
-  sha256 "530a01aa114f17f598b49767499d54a1bbcbe61e5b9ea721017d849bfde5836b"
+  url "http://www.hepforge.org/archive/gosam/gosam-2.0.4-6d9f1cba.tar.gz"
+  sha256 "faf621c70f66d9dffc16ac5cce66258067f39f686d722a4867eeb759fcde4f44"
 
   head do
     url "http://gosam.hepforge.org/svn/branches/gosam-2.0", :using => :svn
