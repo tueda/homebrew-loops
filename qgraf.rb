@@ -10,7 +10,7 @@ class Qgraf < Formula
 
   def install
     inreplace "qgraf-3.1.4.f", "maxdeg=6", "maxdeg=10" if build.with? "maxdeg10"
-    system ENV.fc, "-o", "qgraf", "qgraf-3.1.4.f"
+    system "gfortran", "-o", "qgraf", "qgraf-3.1.4.f"
     Dir.mkdir("example")
     cp ["array.sty", "form.sty", "phi3", "qgraf.dat", "sum.sty"], "example"
     bin.install "qgraf"
