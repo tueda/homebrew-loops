@@ -8,8 +8,6 @@ class Kira < Formula
   depends_on "automake" => :build
   depends_on "ginac"
   depends_on "yaml-cpp"
-# depends_on "sqlite"
-# depends_on "zlib" unless OS.mac?
 
   def install
     args = [
