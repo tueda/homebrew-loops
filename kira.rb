@@ -11,12 +11,10 @@ class Kira < Formula
   depends_on "zlib" unless OS.mac?
 
   head do
-#   homepage "https://gitlab.com/kira-pyred/kira"
-    url "https://gitlab.com/kira-pyred/kira/-/archive/master/kira-master.zip"
-    sha256 "76c12fe86563a382a189a66e1bf8c70d3a9387b62611662f100c74d0b83b7efb"
-
+    url "https://gitlab.com/kira-pyred/kira.git"
     depends_on "autoconf" => :build
     depends_on "automake" => :build
+    needs :cxx14 
   end
 
   def install
