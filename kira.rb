@@ -10,17 +10,26 @@ class Kira < Formula
   depends_on "sqlite"
   depends_on "zlib" unless OS.mac?
 
+  head do
+    url "https://gitlab.com/kira-pyred/kira.git"
+    depends_on "autoconf" => :build
+    depends_on "automake" => :build
+    needs :cxx14 
+  end
+
   def install
     args = [
       "--prefix=#{prefix}",
       "--disable-dependency-tracking",
       "--disable-silent-rules",
     ]
+    
+    system "autoreconf", "-i" if build.head?
+
     system "./configure", *args
     system "make"
     system "make", "install"
 
-    doc.install "doc/paper.pdf"
     pkgshare.install "examples"
   end
 
