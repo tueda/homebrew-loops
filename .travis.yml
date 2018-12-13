@@ -37,6 +37,7 @@ env:
   - PACKAGE=grace-grc
   - PACKAGE=grace-tree
   - PACKAGE=gosam
+  - PACKAGE=kira
   - PACKAGE=kira OPTIONS=--HEAD
   - PACKAGE=lanhep
   - PACKAGE=qgraf OPTIONS=--with-maxdeg10
