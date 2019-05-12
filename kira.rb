@@ -15,7 +15,6 @@ class Kira < Formula
   depends_on "sqlite"
   depends_on "yaml-cpp"
   depends_on "zlib" unless OS.mac?
-  needs :cxx14
 
   def install
     args = [
