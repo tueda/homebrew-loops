@@ -46,4 +46,22 @@ class Formula
     EOS
     s.chomp
   end
+
+  # Find Mathematica and put it to $HOMEBREW_MATH.
+  def env_math
+    s = ENV["HOMEBREW_MATH"]
+    if s.nil? || s.empty?
+      if OS.mac?
+        s = "/Applications/Mathematica.app/Contents/MacOS/MathKernel"
+      else
+        s = "math"
+      end
+      ENV["HOMEBREW_MATH"] = s
+    end
+    if which s
+      ohai "Mathematica path: #{s}"
+    else
+      onoe "Mathematica (#{s}) not found."
+    end
+  end
 end
