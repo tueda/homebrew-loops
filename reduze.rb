@@ -10,8 +10,8 @@ class Reduze < Formula
   depends_on "cmake" => :build
   depends_on "ginac"
   depends_on "berkeley-db" => :optional
+  depends_on "open-mpi" => :optional
   depends_on "yaml-cpp" => :optional
-  depends_on "open-mpi" => [:optional, "--with-cxx-bindings"]
 
   def install
     ENV.append "LDFLAGS", "-Wl,-rpath,#{Formula["berkeley-db"].opt_lib}" if build.with? "berkeley-db"

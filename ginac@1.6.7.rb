@@ -2,8 +2,8 @@ class GinacAT167 < Formula
   desc "Not a Computer algebra system"
   homepage "https://www.ginac.de/"
   url "git://www.ginac.de/ginac.git",
-    :tag => "release_1-6-7",
-    :revision => "065600d31de1301c0ea2df2c08ab59e7767cfc7f"
+      :tag      => "release_1-6-7",
+      :revision => "065600d31de1301c0ea2df2c08ab59e7767cfc7f"
 
   keg_only :versioned_formula
 

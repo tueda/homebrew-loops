@@ -3,8 +3,8 @@ class Libfermat < Formula
   homepage "https://github.com/mprausa/libFermat"
   head "https://github.com/mprausa/libFermat.git"
 
-  depends_on "boost"
   depends_on "cmake" => :build
+  depends_on "boost"
 
   def install
     args = std_cmake_args

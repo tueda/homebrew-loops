@@ -1,5 +1,5 @@
 class Minos < Formula
-  desc "The Minos database facility "
+  desc "The Minos database facility"
   homepage "http://www.nikhef.nl/~form/maindir/others/minos/minos.html"
   url "http://www.nikhef.nl/~form/maindir/others/minos/minosdir.tar.gz"
   version "20070207"
@@ -17,7 +17,7 @@ class Minos < Formula
   def caveats; <<~EOS
     Documents have been copied to:
       #{doc}
-    EOS
+  EOS
   end
 
   test do

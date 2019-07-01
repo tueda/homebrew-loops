@@ -29,7 +29,7 @@ class MmaApart < Formula
       FileNameJoin[{$UserBaseDirectory, "Kernel", "init.m"}]
     Or run the following command in Mathematica:
       (Import["https://git.io/AppendPath.m"];AppendPath["#{HOMEBREW_PREFIX}/share/Mathematica/Applications"])
-    EOS
+  EOS
   end
 
   test do

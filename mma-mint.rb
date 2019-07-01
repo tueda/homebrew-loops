@@ -31,7 +31,7 @@ class MmaMint < Formula
 
     Examples have been copied to
       #{HOMEBREW_PREFIX}/share/mma-mint/examples/
-    EOS
+  EOS
   end
 
   test do

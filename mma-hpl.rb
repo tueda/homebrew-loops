@@ -93,7 +93,7 @@ class MmaHpl < Formula
 
     Examples have been copied to
       #{HOMEBREW_PREFIX}/share/mma-hpl/examples/
-    EOS
+  EOS
   end
 
   test do

@@ -5,9 +5,9 @@ class MmaFormtracer < Formula
   version "2.0.0"
   sha256 "0c7ef6d93a0eb4c9bfe1e4d4d6d0fc238951165376af3d82cbec7e62d64ef221"
 
-  patch :DATA
-
   depends_on "tueda/form/form"
+
+  patch :DATA
 
   def install
     installpath = share/"Mathematica"/"Applications"/"FormTracer-#{version}"
@@ -36,7 +36,7 @@ class MmaFormtracer < Formula
       FileNameJoin[{$UserBaseDirectory, "Kernel", "init.m"}]
     Or run the following command in Mathematica:
       (Import["https://git.io/AppendPath.m"];AppendPath["#{HOMEBREW_PREFIX}/share/Mathematica/Applications"])
-    EOS
+  EOS
   end
 
   test do

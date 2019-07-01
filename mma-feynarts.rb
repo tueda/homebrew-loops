@@ -31,7 +31,7 @@ class MmaFeynarts < Formula
 
     The manual has been copied to:
       #{doc}/FA3Guide.pdf
-    EOS
+  EOS
   end
 
   test do

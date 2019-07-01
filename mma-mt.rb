@@ -96,7 +96,7 @@ class MmaMt < Formula
 
     Mathematica executable to build binary tables (--with-dump) can be specified
     by the environment variable $HOMEBREW_MATH.
-    EOS
+  EOS
   end
 
   test do

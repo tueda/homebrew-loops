@@ -31,7 +31,7 @@ class MmaLitered < Formula
 
     Examples have been copied to
       #{HOMEBREW_PREFIX}/share/mma-litered/examples/
-    EOS
+  EOS
   end
 
   test do

@@ -21,7 +21,7 @@ class Qgraf < Formula
   def caveats; <<~EOS
     Documents and example files have been copied to:
       #{doc}
-    EOS
+  EOS
   end
 
   test do

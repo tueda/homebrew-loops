@@ -16,7 +16,7 @@ class MmaDream < Formula
 
   def caveats; <<~EOS
     #{mmapath_message}
-    EOS
+  EOS
   end
 
   test do

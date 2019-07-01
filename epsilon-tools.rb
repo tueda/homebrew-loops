@@ -3,8 +3,8 @@ class EpsilonTools < Formula
   homepage "https://github.com/mprausa/epsilon"
   head "https://github.com/mprausa/epsilon.git"
 
-  depends_on "boost"
   depends_on "cmake" => :build
+  depends_on "boost"
   depends_on "ginac"
   depends_on "libfermat"
 
@@ -35,7 +35,7 @@ class EpsilonTools < Formula
 
     Examples have been copied to
       #{HOMEBREW_PREFIX}/share/epsilon/example/
-    EOS
+  EOS
   end
 
   def mma_common_caveats; <<~EOS.chomp
@@ -45,7 +45,7 @@ class EpsilonTools < Formula
       FileNameJoin[{$UserBaseDirectory, "Kernel", "init.m"}]
     Or run the following command in Mathematica:
       (Import["https://git.io/AppendPath.m"];AppendPath["#{HOMEBREW_PREFIX}/share/Mathematica/Applications"])
-    EOS
+  EOS
   end
 
   test do

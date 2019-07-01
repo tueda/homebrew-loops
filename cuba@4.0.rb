@@ -4,9 +4,9 @@ class CubaAT40 < Formula
   url "http://www.feynarts.de/cuba/Cuba-4.0.tar.gz"
   sha256 "f2576448ddc296e3ff841a085e737c2451512482f561ae9e2e9616903b685c75"
 
-  patch :DATA
-
   keg_only :versioned_formula
+
+  patch :DATA
 
   def install
     ENV.deparallelize

@@ -4,9 +4,9 @@ class CubaAT3 < Formula
   url "http://www.feynarts.de/cuba/Cuba-3.3.tar.gz"
   sha256 "967d1c8fb64062ddbe21480075e25ad26e89bfc04dbb5c90b030925be588413f"
 
-  patch :DATA
-
   keg_only :versioned_formula
+
+  patch :DATA
 
   def install
     ENV.deparallelize

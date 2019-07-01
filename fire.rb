@@ -4,13 +4,13 @@ class Fire < Formula
   url "https://bitbucket.org/feynmanIntegrals/fire/get/5.2.tar.gz"
   sha256 "95f5e76fe9d5df42f7fc40f885bdcefd0484df9f5ddca0074a1f5d0842e3ee2f"
 
-  patch :DATA
-
   option "with-klink", "Build KLink"
   option "with-flink", "Build FLink"
 
   depends_on "kyoto-cabinet"
   depends_on "snappy"
+
+  patch :DATA
 
   def env_math
     s = ENV["HOMEBREW_MATH"]
@@ -82,7 +82,7 @@ class Fire < Formula
     variable $HOMEBREW_MATH.
 
     KLink (--with-klink) conflicts with KLink in fiesta.
-    EOS
+  EOS
   end
 
   test do
