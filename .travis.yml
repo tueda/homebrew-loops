@@ -1,8 +1,8 @@
 os: linux
-dist: trusty
+dist: xenial
 sudo: required
 language: ruby
-rvm: system
+rvm: 2.3
 
 cache:
   directories:
