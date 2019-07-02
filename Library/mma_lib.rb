@@ -7,15 +7,22 @@ class Formula
     HOMEBREW_PREFIX/"share"/"Mathematica"/"Applications"
   end
 
-  # The application path for each formula.
+  # The application path for each formula. Linked to `mma_app_path`.
   # Example: /usr/local/Cellar/mma-foo/0.1/share/Mathematica/Applications
   def mma_pkg_app_path
     share/"Mathematica"/"Applications"
   end
 
+  # The private directory under the shared application path for each formula.
+  # Example: /usr/local/Cellar/mma-foo/0.1/share/Mathematica/Applications/mma-foo-0.1
+  def mma_pkg_private_path
+    mma_pkg_app_path/"#{name}-#{version}"
+  end
+
   # Create a wrapper package file and install the library.
-  def mma_pkg_wrapper(main_file, other_files=[])
-    install_path = mma_pkg_app_path/"#{name}-#{version}"
+  def mma_pkg_wrapper(main_file, other_files=[], prolog="")
+    private_path = mma_pkg_private_path
+
     files_to_be_installed = [*other_files]
     if File.exist?(main_file)
       files_to_be_installed += [main_file]
@@ -23,14 +30,18 @@ class Formula
     else
       entry_point = File.basename(main_file, ".*") + "`"
     end
-    install_path.install files_to_be_installed
+
+    private_path.install files_to_be_installed
+
     (buildpath/main_file).write <<~EOS
-      If[!MemberQ[$Path, "#{install_path}"],
-        AppendTo[$Path, "#{install_path}"];
-        PacletDirectoryAdd["#{install_path}"];
+      #{prolog}
+      If[!MemberQ[$Path, "#{private_path}"],
+        AppendTo[$Path, "#{private_path}"];
+        PacletDirectoryAdd["#{private_path}"];
       ];
-      Get["#{entry_point}", Path -> "#{install_path}"]
+      Get["#{entry_point}", Path -> "#{private_path}"]
     EOS
+
     mma_pkg_app_path.install main_file
   end
 
@@ -65,3 +76,15 @@ class Formula
     end
   end
 end
+
+module MmaEnv
+  def wolframscript
+    path = "wolframscript"
+    if not which path
+      odie "WolframScript not found"
+    end
+    path
+  end
+end
+
+ENV.extend MmaEnv
