@@ -33,6 +33,7 @@ script:
   - brew test -v $PACKAGE
 
 env:
+  - PACKAGE=axodraw2
   - PACKAGE=chaplin
   - PACKAGE=grace-grc
   - PACKAGE=grace-tree

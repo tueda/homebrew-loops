@@ -1,3 +1,5 @@
+require File.expand_path("Library/mma_lib", __dir__)
+
 class MmaFeyncalc < Formula
   desc "Tools and tables for quantum field theory calculations"
   homepage "http://www.feyncalc.org/"
