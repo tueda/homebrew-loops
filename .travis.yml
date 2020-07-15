@@ -37,7 +37,7 @@ env:
   - PACKAGE=chaplin
   - PACKAGE=grace-grc
   - PACKAGE=grace-tree
-  - PACKAGE=gosam
+# - PACKAGE=gosam
   - PACKAGE=kira
   - PACKAGE=kira OPTIONS=--HEAD
   - PACKAGE=lanhep
