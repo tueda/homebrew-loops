@@ -4,12 +4,12 @@ class Qgraf < Formula
   url "http://anonymous:@qgraf.tecnico.ulisboa.pt/v3.4/qgraf-3.4.2.tgz"
   sha256 "cfc029fb871c78943865ef8b51ebcd3cd4428448b8816714b049669dfdeab8aa"
 
-  option "with-maxdeg10", "Extend the maximum vertex degree to 10"
+  option "without-maxdeg20", "Don't extend the maximum vertex degree to 20"
 
   depends_on "gcc" # for gfortran
 
   def install
-    inreplace "qgraf-3.4.2.f", "maxdeg=6", "maxdeg=10" if build.with? "maxdeg10"
+    inreplace "qgraf-3.4.2.f", "maxdeg=6", "maxdeg=20" if build.with? "maxdeg20"
     system "gfortran", "-o", "qgraf", "qgraf-3.4.2.f"
     Dir.mkdir("example")
     cp ["array.sty", "form.sty", "phi3", "qcd", "qed", "qgraf.dat", "sum.sty"], "example"
@@ -25,6 +25,57 @@ class Qgraf < Formula
   end
 
   test do
-    system "#{bin}/qgraf"
+    File.symlink(doc/"example"/"form.sty", testpath/"form.sty")
+    if build.with? "maxdeg20"
+      (testpath/"qcd").write <<~EOS
+        [ quark, antiquark, - ]
+        [ gluon, gluon, + ]
+        [ ghost, antighost, - ]
+        [ phi, phi, + ]
+
+        [ antiquark, quark, gluon ]
+        [ gluon, gluon, gluon ]
+        [ gluon, gluon, gluon, gluon ]
+        [ antighost, ghost, gluon ]
+
+        % test for maxdeg
+        [ phi, phi, phi ]
+        [ phi, phi, phi, phi ]
+        [ phi, phi, phi, phi, phi ]
+        [ phi, phi, phi, phi, phi, phi ]
+        [ phi, phi, phi, phi, phi, phi, phi ]
+        [ phi, phi, phi, phi, phi, phi, phi, phi ]
+        [ phi, phi, phi, phi, phi, phi, phi, phi, phi ]
+        [ phi, phi, phi, phi, phi, phi, phi, phi, phi, phi ]
+        [ phi, phi, phi, phi, phi, phi, phi, phi, phi, phi, phi ]
+        [ phi, phi, phi, phi, phi, phi, phi, phi, phi, phi, phi, phi ]
+        [ phi, phi, phi, phi, phi, phi, phi, phi, phi, phi, phi, phi, phi ]
+        [ phi, phi, phi, phi, phi, phi, phi, phi, phi, phi, phi, phi, phi, phi ]
+        [ phi, phi, phi, phi, phi, phi, phi, phi, phi, phi, phi, phi, phi, phi, phi ]
+        [ phi, phi, phi, phi, phi, phi, phi, phi, phi, phi, phi, phi, phi, phi, phi,
+          phi ]
+        [ phi, phi, phi, phi, phi, phi, phi, phi, phi, phi, phi, phi, phi, phi, phi,
+          phi, phi ]
+        [ phi, phi, phi, phi, phi, phi, phi, phi, phi, phi, phi, phi, phi, phi, phi,
+          phi, phi, phi ]
+        [ phi, phi, phi, phi, phi, phi, phi, phi, phi, phi, phi, phi, phi, phi, phi,
+          phi, phi, phi, phi ]
+        [ phi, phi, phi, phi, phi, phi, phi, phi, phi, phi, phi, phi, phi, phi, phi,
+          phi, phi, phi, phi, phi ]
+      EOS
+    else
+      File.symlink(doc/"example"/"qcd", testpath/"qcd")
+    end
+    (testpath/"qgraf.dat").write <<~EOS
+      output = 'qgraf.out';
+      style  = 'form.sty';
+      model  = 'qcd';
+      in     = gluon;
+      out    = gluon;
+      loops  = 3;
+      loop_momentum = ;
+      options =;
+    EOS
+    assert_match " 2829 connected diagrams", pipe_output("#{bin}/qgraf")
   end
 end
