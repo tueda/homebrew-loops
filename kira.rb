@@ -25,6 +25,7 @@ class Kira < Formula
   depends_on "mpich" => :optional
   depends_on "open-mpi" => :optional
   depends_on "yaml-cpp"
+  depends_on "gcc@10" unless OS.mac?  # gcc5 fails to compile FireFly
   depends_on "zlib" unless OS.mac?
 
   def install
