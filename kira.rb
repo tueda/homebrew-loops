@@ -3,7 +3,7 @@ class Kira < Formula
   homepage "https://kira.hepforge.org/"
 
   stable do
-    url "https://kira.hepforge.org/downloads?f=kira-2.0.tar.gz"
+    url "https://kira.hepforge.org/downloads?f=releases/kira-2.0.tar.gz"
     sha256 "66db95989d113ae27d319cf84bfda7fd46edaa71d78153b2289c6b1f8139ee2b"
   end
 
