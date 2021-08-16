@@ -42,4 +42,5 @@ env:
   - PACKAGE=kira OPTIONS=--HEAD
   - PACKAGE=lanhep
   - PACKAGE=qgraf
+  - PACKAGE=reduze
 # - PACKAGE=reduze OPTIONS="--berkeley-db --with-open-mpi"  # too long compiler warnings
