@@ -1,7 +1,7 @@
 homebrew-loops
 ==============
 
-[![Build Status](https://travis-ci.org/tueda/homebrew-loops.svg?branch=master)](https://travis-ci.org/tueda/homebrew-loops)
+[![Build Status](https://travis-ci.com/tueda/homebrew-loops.svg?branch=master)](https://travis-ci.com/tueda/homebrew-loops)
 
 Quick start
 -----------
