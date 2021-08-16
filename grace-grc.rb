@@ -18,6 +18,9 @@ class GraceGrc < Formula
   end
 
   test do
+    system "#{bin}/grc", "-h"
+    system "#{bin}/grcplot", "-h"
+    system "#{bin}/grcdraw", "-h" if build.with? "libx11"
   end
 end
 __END__
