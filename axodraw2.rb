@@ -2,17 +2,17 @@ class Axodraw2 < Formula
   desc "Drawing Feynman graphs in LaTeX documents"
   homepage "https://ctan.org/pkg/axodraw2"
   url "http://mirrors.ctan.org/graphics/axodraw2/axodraw2.sty"
-  version "2.1.1b"
+  version "2.1.1c"
   sha256 "2957e0f96a1d21bcea875fdd01333a1b88cb8846f2cb23c4e67c2ada22eb4061"
 
   resource "axohelp" do
     url "http://mirrors.ctan.org/graphics/axodraw2/axohelp.c"
-    sha256 "53dbecf517ab670b3770f0959e40a221933ff1bb6dd214c61cb250a2170a3780"
+    sha256 "f3ee51269de018bf9e2ff049bbfe7e99ef24a5f05410aa3889d36809ff49f128"
   end
 
   resource "axoman" do
     url "http://mirrors.ctan.org/graphics/axodraw2/axodraw2-man.pdf"
-    sha256 "d14994f760669ed3d2fda0effc3eb0cff9232211b6351b801afa118f0150a98f"
+    sha256 "e855f63cf9f69dec436b6bad64212e1a3281132b386989f1ee7d6a2a101b8ba2"
   end
 
   def install
