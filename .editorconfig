@@ -1,0 +1,25 @@
+root = true
+
+# NOTE: Ruby files may contain patches after __END__,
+# where we need to keep their coding styles and whitespace.
+
+[*]
+insert_final_newline = true
+
+[*.{json,yml}]
+charset = utf-8
+end_of_line = lf
+indent_size = 2
+indent_style = space
+trim_trailing_whitespace = true
+
+[*.md]
+charset = utf-8
+end_of_line = lf
+
+[.pre-commit-config.yaml]
+charset = utf-8
+end_of_line = lf
+indent_size = 4
+indent_style = space
+trim_trailing_whitespace = true
