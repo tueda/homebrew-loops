@@ -1,6 +1,9 @@
+# typed: false
+# frozen_string_literal: true
+
 require "formula"
 
-class Formula
+class Formula # rubocop:disable Style/Documentation
   # The shared Mathematica application path.
   # Example: /usr/local/share/Mathematica/Applications
   def mma_app_path
@@ -20,7 +23,7 @@ class Formula
   end
 
   # Create a wrapper package file and install the library.
-  def mma_pkg_wrapper(main_file, other_files=[], prolog="")
+  def mma_pkg_wrapper(main_file, other_files = [], prolog = "") # rubocop:disable Metrics/MethodLength
     private_path = mma_pkg_private_path
 
     files_to_be_installed = [*other_files]
@@ -28,7 +31,7 @@ class Formula
       files_to_be_installed += [main_file]
       entry_point = main_file
     else
-      entry_point = File.basename(main_file, ".*") + "`"
+      entry_point = "#{File.basename(main_file, ".*")}`"
     end
 
     private_path.install files_to_be_installed
@@ -59,13 +62,13 @@ class Formula
   end
 
   # Find Mathematica and put it to $HOMEBREW_MATH.
-  def env_math
-    s = ENV["HOMEBREW_MATH"]
-    if s.nil? || s.empty?
-      if OS.mac?
-        s = "/Applications/Mathematica.app/Contents/MacOS/MathKernel"
+  def env_math # rubocop:disable Metrics/MethodLength
+    s = ENV.fetch("HOMEBREW_MATH", nil)
+    if s.blank?
+      s = if OS.mac?
+        "/Applications/Mathematica.app/Contents/MacOS/MathKernel"
       else
-        s = "math"
+        "math"
       end
       ENV["HOMEBREW_MATH"] = s
     end
@@ -77,12 +80,10 @@ class Formula
   end
 end
 
-module MmaEnv
+module MmaEnv # rubocop:disable Style/Documentation
   def wolframscript
     path = "wolframscript"
-    if not which path
-      odie "WolframScript not found"
-    end
+    odie "WolframScript not found" unless which path
     path
   end
 end
