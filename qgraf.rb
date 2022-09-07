@@ -1,16 +1,16 @@
 class Qgraf < Formula
   desc "Computer program to generate Feynman diagrams"
   homepage "http://cfif.ist.utl.pt/~paulo/qgraf.html"
-  url "http://anonymous:@qgraf.tecnico.ulisboa.pt/v3.4/qgraf-3.4.2.tgz"
-  sha256 "cfc029fb871c78943865ef8b51ebcd3cd4428448b8816714b049669dfdeab8aa"
+  url "http://anonymous:@qgraf.tecnico.ulisboa.pt/v3.6/qgraf-3.6.3.tgz"
+  sha256 "73bc6a9bb10525c14dad6a815e44328c180323041a84f761bebce7e24b1877c7"
 
   option "without-maxdeg20", "Don't extend the maximum vertex degree to 20"
 
   depends_on "gcc" # for gfortran
 
   def install
-    inreplace "qgraf-3.4.2.f", "maxdeg=6", "maxdeg=20" if build.with? "maxdeg20"
-    system "gfortran", "-o", "qgraf", "qgraf-3.4.2.f"
+    inreplace "qgraf-3.6.3.f08", "maxdeg=8", "maxdeg=20" if build.with? "maxdeg20"
+    system "gfortran", "-o", "qgraf", "qgraf-3.6.3.f08"
     Dir.mkdir("example")
     cp ["array.sty", "form.sty", "phi3", "qcd", "qed", "qgraf.dat", "sum.sty"], "example"
     bin.install "qgraf"
@@ -18,10 +18,11 @@ class Qgraf < Formula
     doc.install "example"
   end
 
-  def caveats; <<~EOS
-    Documents and example files have been copied to:
-      #{doc}
-  EOS
+  def caveats
+    <<~EOS
+      Documents and example files have been copied to:
+        #{doc}
+    EOS
   end
 
   test do
