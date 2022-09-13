@@ -7,6 +7,9 @@ on:
   schedule:
     - cron: 0 0 1 * * # monthly
 
+env:
+  HOMEBREW_NO_INSTALL_CLEANUP: 1
+
 jobs:
   test:
     strategy:
@@ -16,6 +19,7 @@ jobs:
           - ubuntu-latest
           - macos-latest
         formula:
+          - kira
           - qgraf
     runs-on: ${{ matrix.os }}
     steps:
@@ -35,8 +39,55 @@ jobs:
       if: steps.cache.outputs.cache-hit != 'true'
       run: brew install-bundler-gems
 
+    # For now, this is needed to ensure linux/limits.h etc. on Ubuntu 20.04,
+    # e.g., https://github.com/Homebrew/homebrew-core/issues/110558
+    - name: Install Linux headers
+      if: runner.os == 'Linux'
+      run: brew install linux-headers
+
+    - name: Install dependencies of ${{ matrix.formula }}
+      run: |
+        brew install --only-dependencies tueda/loops/${{ matrix.formula }}
+
+    - name: Install ${{ matrix.formula }}
+      run: |
+        brew install --verbose tueda/loops/${{ matrix.formula }}
+
     - name: Test ${{ matrix.formula }}
       run: |
-        brew test-bot --only-cleanup-before
-        brew test-bot --only-setup
-        brew test-bot --only-formulae --skip-dependents --testing-formulae=${{ matrix.formula }}
+        brew test --verbose tueda/loops/${{ matrix.formula }}
+
+  install-only:
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-latest
+          - macos-latest
+        formula:
+          - mma-feynrules
+    runs-on: ${{ matrix.os }}
+    steps:
+    - name: Set up Homebrew
+      id: set-up-homebrew
+      uses: Homebrew/actions/setup-homebrew@master
+
+    - name: Cache Homebrew Bundler RubyGems
+      id: cache
+      uses: actions/cache@v1
+      with:
+        path: ${{ steps.set-up-homebrew.outputs.gems-path }}
+        key: ${{ runner.os }}-rubygems-${{ steps.set-up-homebrew.outputs.gems-hash }}
+        restore-keys: ${{ runner.os }}-rubygems-
+
+    - name: Install Homebrew Bundler RubyGems
+      if: steps.cache.outputs.cache-hit != 'true'
+      run: brew install-bundler-gems
+
+    - name: Install dependencies of ${{ matrix.formula }}
+      run: |
+        brew install --only-dependencies tueda/loops/${{ matrix.formula }}
+
+    - name: Install ${{ matrix.formula }}
+      run: |
+        brew install --verbose tueda/loops/${{ matrix.formula }}

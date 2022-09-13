@@ -51,5 +51,7 @@ jobs:
     - name: Check style
       run: |
         brew audit --strict --online \
+          tueda/loops/kira \
+          tueda/loops/mma-feynrules \
           tueda/loops/qgraf
         brew style Library
