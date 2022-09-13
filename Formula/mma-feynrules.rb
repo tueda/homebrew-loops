@@ -1,11 +1,11 @@
 require File.expand_path("Library/mma_lib", __dir__)
 
-class Feynrules < Formula
+class MmaFeynrules < Formula
   desc "Mathematica package to calculate Feynman rules"
   homepage "https://feynrules.irmp.ucl.ac.be/"
   url "http://feynrules.irmp.ucl.ac.be/downloads/feynrules-current.tar.gz"
-  version "2.3.34"
-  sha256 "a17c76da0d317d81150e6e73a800675a8a0e61bd88ab148c9016816ae3c468e9"
+  version "2.3.49"
+  sha256 "85eddac7b5b61eac772c93df93a0c44bc34f531069985a719fe454f0a54afc81"
 
   def install
     mma_pkg_wrapper("FeynRules.m",
@@ -19,9 +19,11 @@ class Feynrules < Formula
                     "$FeynRulesPath = SetDirectory[\"#{mma_pkg_private_path}\"];")
   end
 
-  def caveats; <<~EOS
-    #{mmapath_message}
-  EOS
+  def caveats
+    <<~EOS
+      #{mmapath_message}
+      Note that this formula installs the package in such a way that $FeynRulesPath is automatically defined.
+    EOS
   end
 
   test do
