@@ -55,7 +55,7 @@ class Formula # rubocop:disable Style/Documentation
         AppendTo[$Path, "#{mma_app_path}"]
       to the file printed by
         FileNameJoin[{$UserBaseDirectory, "Kernel", "init.m"}]
-      Or run the following command:
+      This can also be done by running the following command:
         (Import["https://git.io/AppendPath.m"]; AppendPath["#{mma_app_path}"])
     EOS
     s.chomp
