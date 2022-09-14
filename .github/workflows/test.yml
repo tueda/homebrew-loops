@@ -20,6 +20,7 @@ jobs:
           - macos-latest
         formula:
           - kira
+          - lanhep
           - qgraf
     runs-on: ${{ matrix.os }}
     steps:

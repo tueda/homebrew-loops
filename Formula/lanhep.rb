@@ -1,9 +1,9 @@
 class Lanhep < Formula
   desc "Feynman rules generation in momentum representation"
   homepage "https://theory.sinp.msu.ru/~semenov/lanhep.html"
-  url "https://theory.sinp.msu.ru/~semenov/lhep332.tgz"
-  version "3.3.2"
-  sha256 "82690ef2976d708622017687ee302951ece737779e8ac5db55b5df98aefc07df"
+  url "https://theory.sinp.msu.ru/~semenov/lhep400.tgz"
+  version "4.0.0"
+  sha256 "881dcfad962e21bfe76531799a131b2f2dfc5cfaa3414bb80ab4f14955b6c56b"
 
   def install
     inreplace "main.c", "InputDirectory=find_path(argv[0],env);", "InputDirectory=find_path(\"#{share}/\",env);"

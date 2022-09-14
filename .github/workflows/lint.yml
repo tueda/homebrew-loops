@@ -52,6 +52,7 @@ jobs:
       run: |
         brew audit --strict --online \
           tueda/loops/kira \
+          tueda/loops/lanhep \
           tueda/loops/mma-feynrules \
           tueda/loops/qgraf
         brew style Library
