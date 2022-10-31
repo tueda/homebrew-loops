@@ -7,6 +7,7 @@ class Lanhep < Formula
 
   def install
     inreplace "main.c", "InputDirectory=find_path(argv[0],env);", "InputDirectory=find_path(\"#{share}/\",env);"
+    ENV.deparallelize
     system "make"
     bin.install "lhep"
     share.install %w[mdl minsusy susy8 susyLHA test]
