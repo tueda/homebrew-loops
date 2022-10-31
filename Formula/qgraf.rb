@@ -1,16 +1,16 @@
 class Qgraf < Formula
   desc "Computer program to generate Feynman diagrams"
   homepage "http://cfif.ist.utl.pt/~paulo/qgraf.html"
-  url "http://anonymous:@qgraf.tecnico.ulisboa.pt/v3.6/qgraf-3.6.3.tgz"
-  sha256 "73bc6a9bb10525c14dad6a815e44328c180323041a84f761bebce7e24b1877c7"
+  url "http://anonymous:@qgraf.tecnico.ulisboa.pt/v3.6/qgraf-3.6.5.tgz"
+  sha256 "648cc82bf3327a4c36d36847d3921fcfa5d7f73c1646241760db030abdc86c29"
 
   option "without-maxdeg20", "Don't extend the maximum vertex degree to 20"
 
   depends_on "gcc" # for gfortran
 
   def install
-    inreplace "qgraf-3.6.3.f08", "maxdeg=8", "maxdeg=20" if build.with? "maxdeg20"
-    system "gfortran", "-o", "qgraf", "qgraf-3.6.3.f08"
+    inreplace "qgraf-3.6.5.f08", "maxdeg=8", "maxdeg=20" if build.with? "maxdeg20"
+    system "gfortran", "-o", "qgraf", "qgraf-3.6.5.f08"
     Dir.mkdir("example")
     cp ["array.sty", "form.sty", "phi3", "qcd", "qed", "qgraf.dat", "sum.sty"], "example"
     bin.install "qgraf"
