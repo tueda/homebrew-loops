@@ -23,7 +23,7 @@ class Formula # rubocop:disable Style/Documentation
   end
 
   # Create a wrapper package file and install the library.
-  def mma_pkg_wrapper(main_file, other_files = [], prolog = "") # rubocop:disable Metrics/MethodLength
+  def mma_pkg_wrapper(main_file, other_files = [], prolog = "")
     private_path = mma_pkg_private_path
 
     files_to_be_installed = [*other_files]
@@ -62,7 +62,7 @@ class Formula # rubocop:disable Style/Documentation
   end
 
   # Find Mathematica and put it to $HOMEBREW_MATH.
-  def env_math # rubocop:disable Metrics/MethodLength
+  def env_math
     s = ENV.fetch("HOMEBREW_MATH", nil)
     if s.blank?
       s = if OS.mac?
