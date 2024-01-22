@@ -20,7 +20,8 @@ class Kira < Formula
   depends_on "jemalloc" => :optional
   depends_on "mpich" => :optional
   depends_on "open-mpi" => :optional
-  depends_on "zlib" unless OS.mac?
+  
+  uses_from_macos "zlib"
 
   # gcc5.5 fails to compile FireFly.
   on_linux do
@@ -33,17 +34,16 @@ class Kira < Formula
   fails_with gcc: "9"
 
   def install
-    args = []
+    args = %w[
+      --force-fallback-for=firefly
+    ]
 
-    args << "--force-fallback-for=firefly"
     args << "-Dmpi=true" if build.with?("open-mpi") || build.with?("mpich")
     args << "-Djemalloc=true" if build.with?("jemalloc")
 
-    mkdir "build" do
-      system "meson", *std_meson_args, *args, ".."
-      system "ninja"
-      system "ninja", "install"
-    end
+    system "meson", "setup", "build", *std_meson_args, *args
+    system "meson", "compile", "-C", "build", "--verbose"
+    system "meson", "install", "-C", "build"
 
     pkgshare.install "examples"
   end
@@ -56,6 +56,6 @@ class Kira < Formula
   end
 
   test do
-    system "#{bin}/kira", "-h"
+    system bin/"kira", "-h"
   end
 end
