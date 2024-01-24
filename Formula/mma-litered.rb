@@ -1,8 +1,8 @@
 class MmaLitered < Formula
   desc "Package performing the IBP reduction of the multiloop integrals"
   homepage "http://www.inp.nsk.su/~lee/programs/LiteRed/"
-  url "https://www.inp.nsk.su/~lee/programs/LiteRed/LiteRedV1/LiteRedV1.83.zip"
-  sha256 "608d22f868eb8de849b2e53eac8fa0f96a98b4eabca6478df4131fb0464a75ed"
+  url "https://www.inp.nsk.su/~lee/programs/LiteRed/LiteRedV1/LiteRedV1.84.zip"
+  sha256 "9f6ef6fab723830c1bffc4fa6e4d68cde3874937b4055970816f5a992841a8c0"
 
   def install
     installpath = share/"Mathematica"/"Applications"/"LiteRed-#{version}"
