@@ -1,8 +1,8 @@
 class Qgraf < Formula
   desc "Computer program to generate Feynman diagrams"
   homepage "http://cfif.ist.utl.pt/~paulo/qgraf.html"
-  url "http://anonymous:anonymous@qgraf.tecnico.ulisboa.pt/links/qgraf-3.6.8.tgz"
-  sha256 "bfb98cd041863ea8063ba4806a73a30e6d2fff55502a010408173b0c1786b829"
+  url "http://anonymous:anonymous@qgraf.tecnico.ulisboa.pt/links/qgraf-3.6.9.tgz"
+  sha256 "835f6899cc22b2bc596082c5838ad4a8c588f6214e079b85b5c3522e377f577a"
 
   option "without-maxdeg20", "Don't extend the maximum vertex degree to 20"
 
