@@ -1,8 +1,8 @@
 class Reduze < Formula
   desc "Distributed Feynman Integral Reduction"
   homepage "https://reduze.hepforge.org/"
-  url "https://reduze.hepforge.org/download/reduze-2.5.tar.gz"
-  sha256 "43c05ec8bc4c0865c92a326c4f482d67b4dc94ceaad9d7dbedfab3c4e099af8d"
+  url "https://reduze.hepforge.org/download/reduze-2.6.tar.gz"
+  sha256 "472f17b1c411620e9dc5c30acf76a5c202eb90d15b2c25568c8a2f2c80e48050"
 
   option "with-yaml-cpp", "Build with brewed yaml-cpp"
   option "without-test", "Skip build-time tests"

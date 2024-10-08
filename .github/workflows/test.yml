@@ -22,6 +22,7 @@ jobs:
           - kira
           - lanhep
           - qgraf
+          - reduze
     runs-on: ${{ matrix.os }}
     steps:
     - name: Set up Homebrew
