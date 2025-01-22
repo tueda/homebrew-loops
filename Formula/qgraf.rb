@@ -1,6 +1,6 @@
 class Qgraf < Formula
   desc "Computer program to generate Feynman diagrams"
-  homepage "http://cfif.ist.utl.pt/~paulo/qgraf.html"
+  homepage "http://cefema-gt.tecnico.ulisboa.pt/~paulo/qgraf.html"
   url "http://anonymous:anonymous@qgraf.tecnico.ulisboa.pt/links/qgraf-3.6.10.tgz"
   sha256 "6d4b5c6eb97de1942b824d80b8cb454dd77667492d0001e3bf21e761c5702194"
 
