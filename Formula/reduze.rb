@@ -16,6 +16,9 @@ class Reduze < Formula
   def install
     ENV.append "LDFLAGS", "-Wl,-rpath,#{Formula["berkeley-db"].opt_lib}" if build.with? "berkeley-db"
 
+    # Fix build failure with GCC 13.
+    inreplace "tools/reduze1to2/main.cpp", "#include <iostream>", "#include <cstdint>\n#include <iostream>"
+
     args = std_cmake_args
     args << "-DUSE_DATABASE=ON" if build.with? "berkeley-db"
     args << "-DUSE_MPI=ON" if build.with? "open-mpi"
