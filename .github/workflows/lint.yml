@@ -12,22 +12,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
+      # for pip cache
       - name: Create requirements.txt
-        uses: 1arp/create-a-file-action@0.2
+        uses: 1arp/create-a-file-action@0.4.5
         with:
-          file: "requirements.txt"
-          content: "pre-commit"
+          file: requirements.txt
+          content: pre-commit
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-          python-version: "3.x"
-          cache: "pip"
+          python-version: '3.10'
+          cache: pip
 
       - name: Run pre-commit
-        uses: pre-commit/action@v3.0.0
+        uses: pre-commit/action@v3.0.1
 
   style:
     runs-on: ubuntu-latest
@@ -38,7 +39,7 @@ jobs:
 
     - name: Cache Homebrew Bundler RubyGems
       id: cache
-      uses: actions/cache@v1
+      uses: actions/cache@v4
       with:
         path: ${{ steps.set-up-homebrew.outputs.gems-path }}
         key: ${{ runner.os }}-rubygems-${{ steps.set-up-homebrew.outputs.gems-hash }}
