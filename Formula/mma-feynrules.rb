@@ -6,6 +6,7 @@ class MmaFeynrules < Formula
   url "http://feynrules.irmp.ucl.ac.be/downloads/feynrules-current.tar.gz"
   version "2.3.49"
   sha256 "85eddac7b5b61eac772c93df93a0c44bc34f531069985a719fe454f0a54afc81"
+  head "https://github.com/FeynRules/FeynRules.git", branch: "feynrules-current"
 
   def install
     mma_pkg_wrapper("FeynRules.m",
