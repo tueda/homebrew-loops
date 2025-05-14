@@ -3,7 +3,8 @@
 
 require "formula"
 
-class Formula # rubocop:disable Style/Documentation
+# Reopen Homebrew's Formula class to add Mathematica package support.
+class Formula
   # The shared Mathematica application path.
   # Example: /usr/local/share/Mathematica/Applications
   def mma_app_path
@@ -80,7 +81,8 @@ class Formula # rubocop:disable Style/Documentation
   end
 end
 
-module MmaEnv # rubocop:disable Style/Documentation
+# Extends ENV with Mathematica-specific helper methods.
+module MmaEnv
   def wolframscript
     path = "wolframscript"
     odie "WolframScript not found" unless which path
