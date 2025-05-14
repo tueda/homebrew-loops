@@ -14,6 +14,8 @@ class Reduze < Formula
   depends_on "yaml-cpp" => :optional
 
   def install
+    ENV.append "CMAKE_POLICY_VERSION_MINIMUM", "3.5" # for cmake>=4.0
+
     ENV.append "LDFLAGS", "-Wl,-rpath,#{Formula["berkeley-db"].opt_lib}" if build.with? "berkeley-db"
 
     # Fix build failure with GCC 13.
