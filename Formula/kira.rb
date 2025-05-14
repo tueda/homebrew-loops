@@ -7,6 +7,7 @@ class Kira < Formula
   head "https://gitlab.com/kira-pyred/kira.git", branch: "master"
   option "with-mpich", "Enable MPI with MPICH"
   option "with-open-mpi", "Enable MPI with Open MPI"
+  option "without-jemalloc", "Build without jemalloc"
 
   depends_on "cmake" => :build
   depends_on "meson" => :build
@@ -17,10 +18,10 @@ class Kira < Formula
   depends_on "gmp"
   depends_on "mpfr"
   depends_on "yaml-cpp"
-  depends_on "jemalloc" => :optional
+  depends_on "jemalloc" => :recommended
   depends_on "mpich" => :optional
   depends_on "open-mpi" => :optional
-  
+
   uses_from_macos "zlib"
 
   # gcc5.5 fails to compile FireFly.
