@@ -6,11 +6,16 @@ class Qgraf < Formula
 
   option "without-maxdeg20", "Don't extend the maximum vertex degree to 20"
 
-  depends_on "gcc" # for gfortran
+  depends_on "gcc@14" => :build # for gfortran
+
+  fails_with :gcc do
+    version "15"
+    cause "gfortran 15 leads to a runtime error showing only 'could not be found'"
+  end
 
   def install
     inreplace "qgraf-#{version}.f08", "maxdeg=8", "maxdeg=20" if build.with? "maxdeg20"
-    system "gfortran", "-o", "qgraf", "qgraf-#{version}.f08"
+    system Formula["gcc@14"].opt_bin/"gfortran-14", "-o", "qgraf", "qgraf-#{version}.f08"
     Dir.mkdir("example")
     cp ["array.sty", "form.sty", "phi3", "qcd", "qed", "qedx", "qgraf.dat", "sum.sty"], "example"
     bin.install "qgraf"
