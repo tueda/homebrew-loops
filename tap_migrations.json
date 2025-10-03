@@ -1,4 +1,5 @@
 {
+  "chaplin": "davidchall/hep",
   "form": "homebrew/core",
   "form-color": "tueda/form",
   "form-harmpol": "tueda/form",
