@@ -1,8 +1,8 @@
 class Kira < Formula
   desc "Feynman integral reduction program"
   homepage "https://kira.hepforge.org/"
-  url "https://gitlab.com/kira-pyred/kira/-/archive/3.0/kira-3.0.tar.gz"
-  sha256 "d771adb2e3e1f7ab16c53da093cedc6486c5a62a4d16ed0c1c278822b9cab4c0"
+  url "https://gitlab.com/kira-pyred/kira/-/archive/3.1/kira-3.1.tar.gz"
+  sha256 "bb084fa666d4335a72739520ad8d766b87e86f1c8f6763d673f69bc4ea39d717"
   license "GPL-3.0-or-later"
   head "https://gitlab.com/kira-pyred/kira.git", branch: "master"
   option "with-mpich", "Enable MPI with MPICH"
