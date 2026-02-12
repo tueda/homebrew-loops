@@ -1,7 +1,7 @@
 homebrew-loops
 ==============
 
-[![Test](https://github.com/tueda/homebrew-loops/actions/workflows/test.yml/badge.svg)](https://github.com/tueda/homebrew-loops/actions?query=branch:master)
+[![Test](https://github.com/tueda/homebrew-loops/actions/workflows/test.yml/badge.svg)](https://github.com/tueda/homebrew-loops/actions?query=branch:main)
 
 
 Quick start
