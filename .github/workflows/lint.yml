@@ -16,7 +16,7 @@ jobs:
 
       # for pip cache
       - name: Create requirements.txt
-        uses: 1arp/create-a-file-action@0.4.5
+        uses: 1arp/create-a-file-action@0.4.6
         with:
           file: requirements.txt
           content: pre-commit
